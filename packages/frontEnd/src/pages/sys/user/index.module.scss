@@ -1,0 +1,12 @@
+.content {
+    width: 100%;
+    height: 100%;
+    background: white;
+    // padding: 32px;
+}
+.btn {
+    margin-bottom: 10px;
+    Button:not(:last-child) {
+        margin-right: 10px;
+    }
+}

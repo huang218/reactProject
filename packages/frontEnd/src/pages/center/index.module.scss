@@ -1,0 +1,32 @@
+.content {
+    height: 100%;
+    .head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .logo {
+        float: left;
+        height: 31px;
+        margin: 14px 0 16px 0;
+        text-align: center;
+        display: flex;
+        color: white;
+        display: flex;
+        align-items: center;
+        font-weight: bold;
+        font-size: 20px;
+        position: relative;
+        left: -25px;
+    }
+
+    .loginOut {
+        color: #fff;
+        font-size: 20px;
+        cursor: pointer;
+        margin-left: 10px
+    }
+    .loginOut:hover {
+        color: #1677ff;
+    }
+}
