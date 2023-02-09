@@ -41,10 +41,11 @@ http.interceptors.response.use(
   (err) => {
     const {response} = err;
     const { code } = response.data;
+
     if (code === 401) {
       // window.location.replace("/");
     }
     // err.message
-    throw err;
+    throw response.data;
   }
 );

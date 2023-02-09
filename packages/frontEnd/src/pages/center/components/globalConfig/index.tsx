@@ -66,7 +66,6 @@ export default observer(({
           onBlur={updateGlobalConfig}
         />
       </div>
-      
     </Drawer>
   );
 });

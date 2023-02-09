@@ -1,11 +1,13 @@
 import "react";
-import { Button, Checkbox, Form, Input } from "antd";
+import { Button, Checkbox, Form, Input, message } from "antd";
 import { login } from "./service";
 import { useNavigate } from "react-router-dom";
 import { globalStore } from "@/stores/index";
 
 export default () => {
   const naviagte = useNavigate();
+  const [messageApi, contextHolder] = message.useMessage();
+
   const onFinish = (values: any) => {
     console.log("Success:", values);
     const { name, password } = values;
@@ -16,7 +18,12 @@ export default () => {
       const { token } = res.data;
       globalStore.setToken(token);
       naviagte("/center/hello");
-    });
+    }).catch(err => {
+      messageApi.open({
+        type: 'error',
+        content: err?.error,
+      });
+    })
   };
 
   const onFinishFailed = (errorInfo: any) => {
@@ -33,6 +40,7 @@ export default () => {
       onFinishFailed={onFinishFailed}
       autoComplete="off"
     >
+      {contextHolder}
       <Form.Item
         label="用户名"
         name="name"

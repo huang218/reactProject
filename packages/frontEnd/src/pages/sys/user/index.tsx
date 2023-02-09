@@ -22,7 +22,7 @@ const columns: ColumnsType<DataType> = [
     dataIndex: "id",
     key: "id",
     width: '100px',
-    render: (_, row, index) => <a>{index}</a>,
+    render: (_, row, index) => <a>{index + 1}</a>,
   },
   {
     title: "用户名称",

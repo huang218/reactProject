@@ -27,17 +27,27 @@ router.post("/login", async (ctx, next) => {
   const { name } = ctx.request.body;
   console.log(ctx.request.body,'ctx',name)
   let payload = { name }; // 加密的数据
+  let isLogin = true;
   let permissions
-  await new Promise((resolve) => {
+  await new Promise((resolve, rejected) => {
     fs.readFile(path.resolve('db/', `${name}_permissions.json`), (err, dataStr) => {
-      permissions = JSON.parse(dataStr.toString());
-      resolve()
+      if(dataStr) {
+        permissions = JSON.parse(dataStr.toString());
+        resolve();
+      }else {
+        isLogin = false;
+        rejected('未查询到该账户');
+      }
     })
+    
   })
   ctx.response.body = {
     status: 1,
-    code: "200",
-    data: { token: getToken(payload) },
+    code: '200',
+    success: isLogin,
+    data: isLogin ? { 
+      token: getToken(payload) 
+    } : {},
   }
 })
 

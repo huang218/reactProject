@@ -52,8 +52,7 @@ export default observer(() => {
       hideAdd={true}
       onEdit={(e, action) => {
         if (action == "remove") {
-          ;
-          globalStore.deleteTabHistory(e);
+          globalStore.deleteTabHistory(String(e));
         }
       }}
     />

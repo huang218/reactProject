@@ -28,7 +28,7 @@ export default observer(({
           search();
           form.resetFields(); // 重置
         }).catch(err => {
-          message.error(err.response.data.error)
+          message.error(err.error)
         }).finally(() => {
           onClose()
         })

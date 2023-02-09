@@ -111,14 +111,14 @@ const center = observer(() => {
         
       </Header>
       <Layout>
-        <Sider width={260} collapsed={collapsed} className="site-layout-background">
+        <Sider width={260} collapsed={collapsed} className={styles.siders}>
           {menuData.length > 0 && (
             <Menu
               theme="dark"
               mode="inline"
               selectedKeys={defaultSelectedKeys}
               defaultOpenKeys={defaultOpenKeys}
-              style={{ height: "100%", borderRight: 0 }}
+              style={{ height: "100%" }}
               items={menuData}
               onClick={({ key }) => {
                 const path = routerConfig[key]?.path;

@@ -5,6 +5,11 @@
         justify-content: space-between;
         align-items: center;
     }
+    .siders {
+        :global(.ant-menu-submenu-title){
+            margin-bottom: 0 !important;
+        }
+    }
     .logo {
         float: left;
         height: 31px;
