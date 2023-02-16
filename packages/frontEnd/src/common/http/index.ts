@@ -24,12 +24,12 @@ http.interceptors.request.use(
 );
 
 http.interceptors.response.use(
-  (res) => {
+  (res: any) => {
     const { code } = res.data;
     if (code === 401) {
       // window.location.replace("/");
     }
-    if (code != "200") {
+    if (code && code != "200") {
       // Message.error(res.data.message)
       throw new HttpError(
         res.data?.message || "网络错误！",

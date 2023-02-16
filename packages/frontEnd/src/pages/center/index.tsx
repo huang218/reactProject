@@ -133,22 +133,11 @@ const center = observer(() => {
           <Breadcrumb />
           <Content
             className="site-layout-background"
-            style={{
-              margin: 0,
-              minHeight: 280,
-            }}
+            style={{ margin: 0, minHeight: 280 }}
           >
             <Tabs></Tabs>
-            <div
-              style={{
-                padding: 32,
-                background: "white",
-              }}
-            >
-              <KeepAlive
-                include={["/center/sys/user", "/center/sys/role"]}
-                keys={[]}
-              ></KeepAlive>
+            <div style={{ padding: 32, background: "white", height: 'calc(100% - 40px)' }}>
+              <KeepAlive include={["/center/sys/user", "/center/sys/role"]} keys={[]}></KeepAlive>
             </div>
           </Content>
         </Layout>

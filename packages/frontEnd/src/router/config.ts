@@ -31,7 +31,7 @@ export default {
   },
   test: {
     meta: {
-      title: "测试管理",
+      title: "测试网络",
     },
     component: Page1
   },

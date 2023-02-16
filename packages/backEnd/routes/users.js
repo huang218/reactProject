@@ -145,6 +145,32 @@ router.post("/updateUser", async (ctx, next) => {
   }
 })
 
+router.post('/pings', async function(req, next) {
+  console.log(req.request,'req')
+  //ping
+  let all = ""
+  await new Promise((resolve) => {
+     // if (req.request.body.tyspes == "Ping") {
+    let  ping  =  require('child_process').spawn('ping', [req.request.body.ip]);
+    let  iconv  =  require('iconv-lite');
+    ping.stdout.on('data', data => {    
+      all += iconv.decode(data, 'cp936')
+    })
+    ping.stderr.on('data', data => {    
+      // console.log(data);
+    })
+    ping.on('close', code => {
+      resolve()
+    })
+  })
+  req.response.body = {
+    status: 1,
+    code: 200,
+    success: true,
+    data: all
+  }
+})
+
 router.post("/deleteUser", async(ctx, next) => {
   let delId = ctx.request.body
   let permissions
@@ -166,8 +192,12 @@ router.post("/deleteUser", async(ctx, next) => {
   ctx.response.body = {
     status: 1,
     code: "200",
-    data: permissions,
-    totle: permissions.length
+    success: true,
+    data: {
+      message: '删除成功'
+    }
+    // data: permissions,
+    // totle: permissions.length
   }
 })
 

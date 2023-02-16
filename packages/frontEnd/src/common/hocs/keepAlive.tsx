@@ -29,17 +29,17 @@ const KeepAlive = (props: any) => {
   }, [cacheKey, include]) // eslint-disable-line
 
   return (
-    <div>
+    <>
       {Array.from(componentList.current).map(([key, component]) => (
-        <div key={key}>
+        <div key={key} style={{height: '100%'}}>
           {key === activeKey.current ? (
-            <div>{component}</div>
+            <div style={{height: '100%'}}>{component}</div>
           ) : (
             <div style={{ display: 'none' }}>{component}</div>
           )}
         </div>
       ))}
-    </div>
+    </>
   )
 }
 
