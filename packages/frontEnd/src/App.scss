@@ -1,0 +1,88 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  height: 100% !important;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+
+/* 路由进入动画 */
+.fade-enter, .fade-appear {
+  opacity: 0;
+}
+.fade-enter-active, .fade-appear-active {
+  opacity: 1;
+  transform: transition(opacity .25s cubic-bezier(.645, .045, .355, 1) .25s);
+}
+.fade-exit {
+  opacity: 1;
+  z-index: 1;
+}
+.fade-exit-active {
+  opacity: 0;
+  z-index: 1;
+  transform: transition(opacity .25s cubic-bezier(.645, .045, .355, 1));
+}
+.page-fade-enter, .page-fade-appear {
+  opacity: 0;
+}
+.page-fade-enter-active, .page-fade-appear-active {
+  opacity: 1;
+  transform: transition(opacity .5s cubic-bezier(.645, .045, .355, 1));
+}
+.page-fade-exit {
+  opacity: 1;
+  display: none!important;
+}
+.page-fade-exit-active {
+  opacity: 0;
+}
+@keyframes keepAliveFade {
+0% { opacity: 0; }
+50% { opacity: 0; }
+100% { opacity: 1; }
+}
+.layout-container {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  &.keep-alive-fade { animation: keepAliveFade .5s ease-in-out; }
+}

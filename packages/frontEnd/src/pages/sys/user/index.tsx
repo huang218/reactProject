@@ -103,7 +103,7 @@ export default () => {
   },[])
 
   return (
-    <div>
+    <>
       {/* <SearchForm /> */}
       <div className={styles.btn}>
         <Button type="primary" onClick={onClose}>新增</Button>
@@ -111,6 +111,6 @@ export default () => {
       </div>
       <Table rowKey="id" loading={loading} rowSelection={rowSelection} columns={columns} dataSource={data} />
       <UpdateUser open={isModel} onClose={onClose} search={search} />
-    </div>
+    </>
   )
 }

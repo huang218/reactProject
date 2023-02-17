@@ -9,15 +9,6 @@ import { useEffect } from "react";
 import useLocationListen from "@/common/hooks/useLocationListen";
 import { useNavigate } from "react-router-dom";
 
-const initialItems = [
-  { label: "Tab 1", key: "1" },
-  { label: "Tab 2", key: "2" },
-  {
-    label: "Tab 3",
-    key: "3",
-  },
-];
-
 export default observer(() => {
   const [activeKey, setActiveKey] = useState("");
   const [items, setItems] = useState([]);
@@ -53,6 +44,10 @@ export default observer(() => {
       onEdit={(e, action) => {
         if (action == "remove") {
           globalStore.deleteTabHistory(String(e));
+        }
+        const route = Object.keys(toJS(globalStore.tabsHistory))
+        if(route.length) {
+          navigate(route[route.length - 1])
         }
       }}
     />

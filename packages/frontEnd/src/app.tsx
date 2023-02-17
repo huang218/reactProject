@@ -1,12 +1,12 @@
 import {
   RouterProvider,
   createBrowserRouter,
+  useLocation,
   useNavigate,
   Routes,
   Route,
 } from "react-router-dom";
-import { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { globalStore } from "@/stores/index";
 import { createRouteData, routeData } from "@/router/index";
 import { observer } from "mobx-react";
@@ -15,6 +15,7 @@ import Login from "./pages/login";
 import Center from "./pages/center";
 
 export default observer(() => {
+  const { pathname } = useLocation()
   const { setRouterData, setPermissions } = globalStore;
   const [routerData, setRouter] = useState<any>();
   const navigate = useNavigate();
@@ -66,6 +67,23 @@ export default observer(() => {
     }
   }, [token, globalStore.token]);
 
+  // 封装一层 专门负责显示页面标题
+  // const DomTitle = ({item}) => {
+    // const data = item
+    // let route: any = {};
+    // if(data?.children?.length > 0){
+    //   data?.children.forEach(h =>{
+    //     if(h.path === pathname) {
+    //       route = h
+    //     }
+    //   })
+    // }else {
+    //   route = data
+    // }
+    // console.log(item,'标题',route)
+  //   document.title = item.title;
+  //   return item.element
+  // }
   const toRenderRoute = (item) => {
     const { children } = item;
     let arr = [];
@@ -80,7 +98,7 @@ export default observer(() => {
         key={item.path}
         path={item.path}
         element={item.element}
-      ></Route>
+      />
     );
   };
 
@@ -96,6 +114,8 @@ export default observer(() => {
               return toRenderRoute(item);
             })}
           ></Route>
+          {/* 404页面处理 */}
+          <Route path="*" element={<div>没有页面</div>} />
         </Routes>
       )}
     </>

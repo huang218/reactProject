@@ -1,12 +1,11 @@
 import { action, makeAutoObservable, toJS } from "mobx";
-import type { Location } from "react-router-dom";
 import type { SizeType } from 'antd/es/config-provider/SizeContext';
-
+import type { tabsType } from '../common/hocs/keepAlive.d'
 // Model the application state.
 class Global {
   routerData = null;
   token = "";
-  tabsHistory: { [key: string]: Location } = {};
+  tabsHistory: tabsType = {};
   permissions: any[] = [];
   componentsSize: SizeType = "small";
   themeColor = "#972626"
@@ -27,7 +26,7 @@ class Global {
   setToken = (token: string) => {
     this.token = token;
   };
-  addTabHistory = (newItem: Location) => {
+  addTabHistory = (newItem: tabsType['keys']) => {
     let temp = toJS(this.tabsHistory);
     temp[newItem.pathname] = newItem;
     this.tabsHistory = temp;
@@ -38,6 +37,7 @@ class Global {
       Reflect.deleteProperty(temp, pathName);
       this.tabsHistory = temp;
     }
+
   };
   setPermissions = (permissions) => {
     this.permissions = permissions;

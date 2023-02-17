@@ -73,7 +73,7 @@ export default (props) => {
         {
           loading
           ? <Skeleton active paragraph={{ rows: 5 }} />
-          : <div  dangerouslySetInnerHTML={{__html: resultDate}}></div> 
+          : <div dangerouslySetInnerHTML={{__html: resultDate}}></div> 
         }
       </div>
     </div>

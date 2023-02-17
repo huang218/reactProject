@@ -63,7 +63,7 @@ router.get("/getConfig", async (ctx, next) => {
   let permissions
   await new Promise((resolve) => {
     fs.readFile(path.resolve('db/', `${name}_globalConfig.json`), (err, dataStr) => {
-      permissions = JSON.parse(dataStr.toString());
+      if(dataStr) permissions = JSON.parse(dataStr.toString());
       resolve()
     })
   })

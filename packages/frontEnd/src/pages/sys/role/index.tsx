@@ -151,10 +151,7 @@ export default(props) => {
   ];
   return (
     <div>
-      <div onClick={()=>{
-        navigate("/center/sys/user")
-      }}>test</div>
-      <SearchForm />
+      {/* <SearchForm /> */}
       <Table columns={columns} dataSource={data} />
     </div>
   );

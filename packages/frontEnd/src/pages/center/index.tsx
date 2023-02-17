@@ -1,17 +1,18 @@
-import { createElement } from "react";
+import { useEffect, useState, createElement } from "react";
 import { UserOutlined } from "@ant-design/icons";
+import { TransitionGroup, CSSTransition } from 'react-transition-group'
 import { Layout, Menu, Modal } from "antd";
+import type { MenuProps } from 'antd';
 import styles from "./index.module.scss";
 import { globalStore } from "@/stores/index";
 import {
-  Outlet,
   useNavigate,
   useLocation,
   type Location,
 } from "react-router-dom";
 import { PoweroffOutlined, MenuUnfoldOutlined, MenuFoldOutlined, SettingOutlined } from '@ant-design/icons';
 import { observer } from "mobx-react";
-import { useEffect, useState } from "react";
+import { toJS } from "mobx";
 import themeProviderHoc from "@/common/hocs/themeProviderHoc/index";
 import Tabs from "./components/tabs";
 import Breadcrumb from "./components/breadcrumb";
@@ -43,9 +44,11 @@ const center = observer(() => {
   const [menuData, setMenuData] = useState([]);
   const [collapsed, setCollapsed] = useState(false)
   const [open, setOpen] = useState(false);
+  const [openKeys, setOpenKeys] = useState([]); //'sys'
+  const [openKeysBackup, setOpenKeysBackup] = useState([]);
   const { routerData = [] } = globalStore;
 
-
+  // 路由监听
   useLocationListen((location: Location) => {
     const { pathname } = location;
     let temp = pathname.split("/").filter((item) => {
@@ -56,17 +59,17 @@ const center = observer(() => {
     if (temp2.length) {
       setDefaultOpenKeys(temp2);
     }
+    // 控制侧边栏父级展开、收缩
+    onOpenChange(temp2)
     globalStore.addTabHistory(location);
   });
-  // 路由监听
-  let location = useLocation();
-  useEffect(() => {}, [location]);
+
   useEffect(() => {
+    console.log('监听routerData')
     if (routerData.length) {
       let result = [];
       processRoute(routerData[1].children, result);
       setMenuData(result);
-      console.log(routerData,'routerData',result)
     }
   }, [routerData]);
 
@@ -82,13 +85,43 @@ const center = observer(() => {
         sessionStorage.removeItem("PERMISSIONS");
         sessionStorage.removeItem("GLOBAL_CONFIG");
         globalStore.init()
-        navigate("/");
+        navigate("/", {
+          replace: true
+        });
       },
     });
   }
+  const onOpenChange: MenuProps['onOpenChange'] = (keys) => {
+    // 点击同一个父级收缩菜单
+    if(!keys.length) {
+      setOpenKeys([])
+      return
+    }
+    const latestOpenKey = keys.find((key) => openKeys.indexOf(key) === -1);
+    console.log(keys,'keys',latestOpenKey)
+    // 点击同一个子菜单 不收缩
+    if(!latestOpenKey) {
+      return
+    }
+    // 侧边栏关闭状态下 每次切换记录展开状态
+    if(collapsed) setOpenKeysBackup([latestOpenKey])
+    // 点击不同父级下的菜单 收缩并切换
+    setOpenKeys([latestOpenKey]);
+
+  };
 
   const config = () => {
     setOpen(!open)
+  }
+
+  const openOrClose = () => {
+    // 关闭前记录打开状态--打开后赋值状态
+    if(!collapsed) {
+      setOpenKeysBackup(openKeys)
+    }else {
+      setOpenKeys(openKeysBackup)
+    }
+    setCollapsed(!collapsed)
   }
 
   
@@ -100,7 +133,7 @@ const center = observer(() => {
             <div className={styles.logo}>Moderate admin React</div>
             {createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
               className: styles.loginOut,
-              onClick: () => setCollapsed(!collapsed),
+              onClick: openOrClose,
             })}
           </div>
           <div>
@@ -108,9 +141,9 @@ const center = observer(() => {
             <PoweroffOutlined title="退出" className={styles.loginOut} onClick={loginOut} />
           </div>
         </div>
-        
       </Header>
       <Layout>
+        {/* 侧边栏 */}
         <Sider width={260} collapsed={collapsed} className={styles.siders}>
           {menuData.length > 0 && (
             <Menu
@@ -120,6 +153,8 @@ const center = observer(() => {
               defaultOpenKeys={defaultOpenKeys}
               style={{ height: "100%" }}
               items={menuData}
+              openKeys={openKeys}
+              onOpenChange={onOpenChange}
               onClick={({ key }) => {
                 const path = routerConfig[key]?.path;
                 if (path) {
@@ -136,8 +171,20 @@ const center = observer(() => {
             style={{ margin: 0, minHeight: 280 }}
           >
             <Tabs></Tabs>
-            <div style={{ padding: 32, background: "white", height: 'calc(100% - 40px)' }}>
-              <KeepAlive include={["/center/sys/user", "/center/sys/role"]} keys={[]}></KeepAlive>
+            <div style={{ position: 'relative', padding: 32, background: "white", height: 'calc(100% - 40px)' }}>
+              <KeepAlive 
+                include={Object.keys(toJS(globalStore.tabsHistory))} 
+                keys={toJS(globalStore.tabsHistory)}
+              ></KeepAlive>
+              {/* <TransitionGroup component={ null }>
+                <CSSTransition
+                    key={ pathname + cacheKeys[pathname] }
+                    appear={ true }
+                    timeout={ 500 }
+                    classNames='page-fade'>
+                    { outlet } 
+                </CSSTransition>
+            </TransitionGroup> */}
             </div>
           </Content>
         </Layout>

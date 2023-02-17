@@ -1,0 +1,47 @@
+/* 路由进入动画 */
+.fade-enter, .fade-appear {
+  opacity: 0;
+}
+.fade-enter-active, .fade-appear-active {
+  opacity: 1;
+  transform: transition(opacity .25s cubic-bezier(.645, .045, .355, 1) .25s);
+}
+.fade-exit {
+  opacity: 1;
+  z-index: 1;
+}
+.fade-enter-done {
+  opacity: 0;
+}
+.fade-exit-active {
+  opacity: 0;
+  z-index: 1;
+  transform: transition(opacity .25s cubic-bezier(.645, .045, .355, 1));
+}
+.page-fade-enter, .page-fade-appear {
+  opacity: 0;
+}
+.page-fade-enter-active, .page-fade-appear-active {
+  opacity: 1;
+  transform: transition(opacity .5s cubic-bezier(.645, .045, .355, 1));
+}
+.page-fade-exit {
+  opacity: 1;
+  display: none!important;
+}
+.page-fade-exit-active {
+  opacity: 0;
+}
+@keyframes keepAliveFade {
+0% { opacity: 0; }
+50% { opacity: 0.5; }
+100% { opacity: 1; }
+}
+.layout_container {
+  position: absolute;
+  left: 32px;
+  right: 32px;
+  top: 32px;
+  bottom: 32px;
+  &.keep_alive_fade { animation: keepAliveFade .5s ease-in-out; }
+}
