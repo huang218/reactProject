@@ -41,23 +41,23 @@ export default {
   },
   test1: {
     meta: {
-      title: "test1管理",
+      title: "测试一",
     },
-    title: 'test1管理',
+    title: '测试一',
     component: Page1
   },
   test2: {
     meta: {
-      title: "test2管理",
+      title: "测试二",
     },
-    title: 'test2管理',
+    title: '测试二',
     component: Page1
   },
   test3: {
     meta: {
-      title: "test3管理",
+      title: "测试三",
     },
-    title: 'test3管理',
+    title: '测试三',
     component: Page1
   },
 };

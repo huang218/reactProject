@@ -1,6 +1,5 @@
 import { useEffect, useState, createElement } from "react";
 import { UserOutlined } from "@ant-design/icons";
-import { TransitionGroup, CSSTransition } from 'react-transition-group'
 import { Layout, Menu, Modal } from "antd";
 import type { MenuProps } from 'antd';
 import styles from "./index.module.scss";
@@ -144,7 +143,7 @@ const center = observer(() => {
       </Header>
       <Layout>
         {/* 侧边栏 */}
-        <Sider width={260} collapsed={collapsed} className={styles.siders}>
+        <Sider width={240} collapsed={collapsed} className={styles.siders}>
           {menuData.length > 0 && (
             <Menu
               theme="dark"
@@ -157,9 +156,7 @@ const center = observer(() => {
               onOpenChange={onOpenChange}
               onClick={({ key }) => {
                 const path = routerConfig[key]?.path;
-                if (path) {
-                  navigate(path);
-                }
+                if(path) navigate(path)
               }}
             />
           )}
@@ -171,9 +168,9 @@ const center = observer(() => {
             style={{ margin: 0, minHeight: 280 }}
           >
             <Tabs></Tabs>
-            <div style={{ position: 'relative', padding: 32, background: "white", height: 'calc(100% - 40px)' }}>
-              <KeepAlive 
-                include={Object.keys(toJS(globalStore.tabsHistory))} 
+            <div style={{ position: 'relative', padding: 32, background: "white", height: 'calc(100% - 40px)',overflow: 'hidden' }}>
+              <KeepAlive
+                include={Object.keys(toJS(globalStore.tabsHistory))}
                 keys={toJS(globalStore.tabsHistory)}
               ></KeepAlive>
               {/* <TransitionGroup component={ null }>

@@ -1,7 +1,7 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { Tabs } from "antd";
 import { globalStore } from "@/stores/index";
-import { observer, inject } from "mobx-react";
+import { observer } from "mobx-react";
 import { toJS } from "mobx";
 import styles from "./index.module.scss";
 import routeConfig from "@/router/config";

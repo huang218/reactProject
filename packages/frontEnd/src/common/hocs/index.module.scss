@@ -1,41 +1,44 @@
-/* 路由进入动画 */
-.fade-enter, .fade-appear {
+/* 动画初始阶段 -- enter */
+.fade_enter, 
+.fade_appear {
   opacity: 0;
 }
-.fade-enter-active, .fade-appear-active {
+// 动画激活阶段-- enter-active
+.fade_enter_active, .fade_appear_active {
   opacity: 1;
-  transform: transition(opacity .25s cubic-bezier(.645, .045, .355, 1) .25s);
+  transform: transition(opacity .5s cubic-bezier(.645, .045, .355, 1) .5s);
 }
-.fade-exit {
+// 动画结束阶段 -- enter-done
+.fade_enter_done {
+  opacity: 0;
+}
+
+.fade_exit {
   opacity: 1;
-  z-index: 1;
+  z-index: 99;
+  transform: translateX(0);
 }
-.fade-enter-done {
+.fade_exit_active {
   opacity: 0;
+  z-index: 99;
+  transition: all .5s;
+  transform: translateX(50px);
 }
-.fade-exit-active {
-  opacity: 0;
-  z-index: 1;
-  transform: transition(opacity .25s cubic-bezier(.645, .045, .355, 1));
-}
-.page-fade-enter, .page-fade-appear {
-  opacity: 0;
-}
-.page-fade-enter-active, .page-fade-appear-active {
+.fade_exit_done {
   opacity: 1;
-  transform: transition(opacity .5s cubic-bezier(.645, .045, .355, 1));
 }
-.page-fade-exit {
-  opacity: 1;
-  display: none!important;
-}
-.page-fade-exit-active {
-  opacity: 0;
-}
+
 @keyframes keepAliveFade {
-0% { opacity: 0; }
-50% { opacity: 0.5; }
-100% { opacity: 1; }
+  0% { 
+    opacity: 0; 
+    z-index: 100;
+    transform: translateX(-50px);
+  }
+  100% { 
+    opacity: 1; 
+    z-index: 100;
+    transform: translateX(0);
+  }
 }
 .layout_container {
   position: absolute;

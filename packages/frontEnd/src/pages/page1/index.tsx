@@ -1,14 +1,15 @@
-import { Button, Form, Input, Skeleton } from "antd";
+import { Button, Form, Input, Skeleton, Radio } from "antd";
 import "react";
 import { useEffect, useState } from "react";
 import styles from "./index.module.scss";
-import { ipReg } from "@/common/utils";
+import { ipReg, domainUrl } from "@/common/utils";
 import { getPings } from './service';
 
 export default (props) => {
   const [form] = Form.useForm();
   const [resultDate, setResultDate] = useState('');
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState<Boolean>(false);
+  const [radioContent, setRadioContent] = useState<String>('domain')
 
   const localPing = (values: {ipName: String}) => {
     getPings({
@@ -33,8 +34,12 @@ export default (props) => {
     console.log('Failed:', errorInfo);
   };
 
+  const radioCanhge = (e: any) => {
+    setRadioContent(e.target.value)
+  }
+
   useEffect(() => {
-    form.setFieldValue('ipName', '10.0.105.6')
+    form.setFieldValue('obj', 'domain')
   },[])
 
   return (
@@ -50,14 +55,27 @@ export default (props) => {
           autoComplete="off"
         >
           <Form.Item
-            label="测试ip"
+            label="测试对象"
+            name="obj"
+            rules={
+              [{ required: true, message: `请选择测试对象` }]
+            }
+          >
+            <Radio.Group buttonStyle="solid" onChange={radioCanhge}>
+              <Radio.Button value="domain">域名</Radio.Button>
+              <Radio.Button value="ip">Ip</Radio.Button>
+            </Radio.Group>
+          </Form.Item>
+          
+          <Form.Item
+            label={`${radioContent === 'domain' ? '域名' : 'Ip'}`}
             name="ipName"
             rules={
               [
-                { required: true, message: '请输入测试ip地址!' },
-                { 
-                  pattern: ipReg,
-                  message: '测试ip格式不正确!' 
+                { required: true, message: `请输入${radioContent === 'domain' ? '域名' : 'Ip地址'} ！` },
+                {
+                  pattern: radioContent === 'domain' ? domainUrl : radioContent === 'ip' ? ipReg : null,
+                  message: `${radioContent === 'domain' ? '域名' : 'Ip地址'}不正确`
                 }
               ]
             }

@@ -8,7 +8,8 @@ class Global {
   tabsHistory: tabsType = {};
   permissions: any[] = [];
   componentsSize: SizeType = "small";
-  themeColor = "#972626"
+  themeColor = "#972626";
+  animationControl: Boolean = false;
 
 
   constructor() {
@@ -19,6 +20,7 @@ class Global {
     this.token = "";
     this.tabsHistory = {};
     this.permissions = [];
+    this.animationControl = false;
   }
   setRouterData = (data) => {
     this.routerData = data;
@@ -44,9 +46,12 @@ class Global {
   };
   setComponents = (type: SizeType) => {
     this.componentsSize = type
-  }
+  };
   setColor = (color) => {
     this.themeColor = color
+  };
+  setAnimationControl = () => {
+    this.animationControl = !this.animationControl
   }
 }
 
