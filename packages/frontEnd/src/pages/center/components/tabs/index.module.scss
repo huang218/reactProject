@@ -1,5 +1,15 @@
 .content {
+    :global(.ant-tabs-nav-list:first-child()) {
+        margin-left: 2px !important;
+    }
     :global(.ant-tabs-nav) {
         margin: initial !important;
     }
+}
+.border {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    background: rgb(255, 255, 255);
+    padding: 0px 5px;
+    margin-right: 5px;
 }

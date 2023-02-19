@@ -27,5 +27,27 @@ body {
   min-height: 100vh;
 }
 
-
+/*设置宽度,轨道颜色*/
+::-webkit-scrollbar {
+	width: 8px;
+	height: 10px;
+	background: #0e0c0c;   /*可以设置轨道颜色*/
+  border-radius: 50%;
+}
+/*滚动条*/
+::-webkit-scrollbar-thumb {
+	background: #e5e5e5;
+	border-radius: 10px;
+}
+/*增加悬停样式*/
+::-webkit-scrollbar-thumb:hover {
+	background: #b8b8b8;
+}
+::-webkit-scrollbar-corner {
+	background: #e8e8e8;   /*修改同时有垂直滚动条和水平滚动条时交汇的部分的样式*/
+}
+::-webkit-scrollbar-track {
+	background: #f9f9f9; /*滚动条轨道色*/
+	border-radius: 2px;
+}
 

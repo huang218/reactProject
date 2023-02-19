@@ -109,8 +109,10 @@ export default () => {
         <Button type="primary" onClick={onClose}>新增</Button>
         <Button type="dashed" onClick={showDeleteConfirm}>删除</Button>
       </div>
-      <Table rowKey="id" loading={loading} rowSelection={rowSelection} columns={columns} dataSource={data} />
-      <UpdateUser open={isModel} onClose={onClose} search={search} />
+      <div className={styles.tableUser}>
+        <Table rowKey="id" loading={loading} rowSelection={rowSelection} columns={columns} dataSource={data} />
+        <UpdateUser open={isModel} onClose={onClose} search={search} />
+      </div>
     </>
   )
 }

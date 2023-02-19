@@ -34,7 +34,6 @@ const KeepAlive = (props: {
     if (!componentList.current.has(activeKey.current)) {
       componentList.current.set(activeKey.current, outlet)
     }
-    console.log(activeKey.current,'componentList', componentList.current)
     forceUpdate()
   }, [cacheKey, include]) // eslint-disable-line
   // in={animationControl}

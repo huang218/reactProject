@@ -10,3 +10,22 @@
         margin-right: 10px;
     }
 }
+
+.tableUser {
+    height: calc(100% - 42px);
+    :global {
+        .ant-table-thead {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        .ant-table-wrapper,.ant-spin-nested-loading,.ant-spin-container {
+            height: 100%;
+        }
+    }
+    :global(.ant-table) {
+        height: calc(100% - 56px);
+        overflow: hidden;
+        overflow-y: auto;
+    }
+}
