@@ -1,4 +1,4 @@
-import { Login, Center, Page1, Hello, UserPage, RolePage } from "../pages";
+import { Login, Center, Page1, Hello, UserPage, RolePage, Drag } from "../pages";
 export default {
   center: {
     meta: {
@@ -38,6 +38,13 @@ export default {
     },
     title: '网络测试',
     component: Page1
+  },
+  drag: {
+    meta: {
+      title: '拖拽模块'
+    },
+    title: '拖拽模块',
+    component: Drag
   },
   test1: {
     meta: {

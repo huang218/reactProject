@@ -5,4 +5,13 @@ const Page1 = lazy(() => import("./page1"));
 const Hello = lazy(() => import("./hello"));
 const UserPage = lazy(() => import("./sys/user"));
 const RolePage = lazy(() => import("./sys/role"));
-export { Center, Login, Page1, Hello,UserPage,RolePage };
+const Drag = lazy(() => import("./drag"));
+export { 
+    Center, 
+    Login, 
+    Page1, 
+    Hello, 
+    UserPage, 
+    RolePage,
+    Drag
+};

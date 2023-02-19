@@ -9,7 +9,8 @@ export const RouteIds = {
   test: "test",
   test1: "test1",
   test2: "test2",
-  test3: "test3"
+  test3: "test3",
+  drag: "drag"
 };
 
 export const routesStructData = [
@@ -23,6 +24,9 @@ export const routesStructData = [
   {
     id: RouteIds.test1,
     children: [{ id: RouteIds.test2 }],
+  },
+  {
+    id: RouteIds.drag,
   },
   {
     id: RouteIds.test3,
