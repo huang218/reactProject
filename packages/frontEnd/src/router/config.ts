@@ -1,4 +1,4 @@
-import { Login, Center, Page1, Hello, UserPage, RolePage, Drag } from "../pages";
+import { Page1, Hello, UserPage, RolePage, Drag, Echarts } from "../pages";
 export default {
   center: {
     meta: {
@@ -46,13 +46,13 @@ export default {
     title: '拖拽模块',
     component: Drag
   },
-  test1: {
-    meta: {
-      title: "测试一",
-    },
-    title: '测试一',
-    component: Page1
-  },
+  // test1: {
+  //   meta: {
+  //     title: "测试一",
+  //   },
+  //   title: '测试一',
+  //   component: Page1
+  // },
   test2: {
     meta: {
       title: "测试二",
@@ -62,9 +62,9 @@ export default {
   },
   test3: {
     meta: {
-      title: "测试三",
+      title: "Echarts图",
     },
-    title: '测试三',
-    component: Page1
+    title: 'Echarts图',
+    component: Echarts
   },
 };

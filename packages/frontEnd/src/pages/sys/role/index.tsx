@@ -1,5 +1,5 @@
 import "react";
-import { Table, Form, Tree, Modal } from "antd";
+import { Table, Form, Tree, Modal, message } from "antd";
 import ModalForm from "./components/modalForm";
 import { globalStore } from "@/stores/index";
 import {
@@ -73,6 +73,7 @@ export default(props) => {
   const { permissions } = globalStore;
   const [allPermissions, setPer] = useState<any>();
   const [checkedKeys, setCheckedKeys] = useState<any>(permissions);
+  const [messageApi, contextHolder] = message.useMessage();
   const navigate = useNavigate();
 
   const handleSubmit = () => {
@@ -90,7 +91,12 @@ export default(props) => {
             sessionStorage.removeItem("GLOBAL_CONFIG");
             globalStore.init()
             navigate("/");
-          });
+          }).catch(err => {
+            messageApi.open({
+              type: 'error',
+              content: err?.error,
+            });
+          })
         }
       },
     });
@@ -152,6 +158,7 @@ export default(props) => {
   return (
     <div>
       {/* <SearchForm /> */}
+      {contextHolder}
       <Table columns={columns} dataSource={data} />
     </div>
   );

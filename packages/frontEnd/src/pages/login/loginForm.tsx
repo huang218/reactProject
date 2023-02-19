@@ -15,8 +15,9 @@ export default () => {
       name,
       password,
     }).then((res) => {
-      const { token } = res.data;
+      const { token, user } = res.data;
       globalStore.setToken(token);
+      globalStore.setUserName(user)
       naviagte("/center/hello");
     }).catch(err => {
       messageApi.open({

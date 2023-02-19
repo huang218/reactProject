@@ -1,6 +1,6 @@
 import { useEffect, useState, createElement } from "react";
 import { UserOutlined } from "@ant-design/icons";
-import { Layout, Menu, Modal } from "antd";
+import { Avatar, Layout, Menu, Modal, Space } from "antd";
 import type { MenuProps } from 'antd';
 import styles from "./index.module.scss";
 import { globalStore } from "@/stores/index";
@@ -45,7 +45,7 @@ const center = observer(() => {
   const [open, setOpen] = useState(false);
   const [openKeys, setOpenKeys] = useState([]); //'sys'
   const [openKeysBackup, setOpenKeysBackup] = useState([]);
-  const { routerData = [] } = globalStore;
+  const { routerData = [], userName } = globalStore;
 
   // 路由监听
   useLocationListen((location: Location) => {
@@ -135,7 +135,10 @@ const center = observer(() => {
               onClick: openOrClose,
             })}
           </div>
-          <div>
+          <div style={{display: 'flex'}}>
+            <Space wrap size={24}>
+              <Avatar className={styles.avatar}>{ userName }</Avatar>
+            </Space>
             <SettingOutlined title="配置" className={styles.loginOut} onClick={config} />
             <PoweroffOutlined title="退出" className={styles.loginOut} onClick={loginOut} />
           </div>

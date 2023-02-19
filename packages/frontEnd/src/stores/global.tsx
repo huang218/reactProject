@@ -5,6 +5,7 @@ import type { tabsType } from '../common/hocs/keepAlive.d'
 class Global {
   routerData = null;
   token = "";
+  userName = sessionStorage.getItem("USERNAME");
   tabsHistory: tabsType = {};
   permissions: any[] = [];
   componentsSize: SizeType = "small";
@@ -18,6 +19,7 @@ class Global {
   init() {
     this.routerData = [];
     this.token = "";
+    this.userName = "";
     this.tabsHistory = {};
     this.permissions = [];
     this.animationControl = false;
@@ -52,6 +54,10 @@ class Global {
   };
   setAnimationControl = () => {
     this.animationControl = !this.animationControl
+  };
+  setUserName = (name) => {
+    this.userName = name;
+    sessionStorage.setItem("USERNAME", name)
   }
 }
 

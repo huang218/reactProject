@@ -45,7 +45,8 @@ router.post("/login", async (ctx, next) => {
     status: 1,
     code: '200',
     success: isLogin,
-    data: isLogin ? { 
+    data: isLogin ? {
+      user: name,
       token: getToken(payload) 
     } : {},
   }

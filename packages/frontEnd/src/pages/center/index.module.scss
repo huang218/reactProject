@@ -4,6 +4,23 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        .avatar {
+            font-size: 14px;
+            line-height: 36px;
+            width: 40px;
+            height: 40px;
+            background-color: #fde3cf;
+            color: #f56a00;
+            cursor: pointer;
+            transition: all .2s; 
+            &:hover{
+                transform: scale(1.2);
+                // font-size: 16px;
+                // line-height: 46px;
+                // width: 50px;
+                // height: 50px;
+            }
+        }
     }
     .siders {
         :global(.ant-menu-submenu-title){
@@ -27,7 +44,7 @@
 
     .loginOut {
         color: #fff;
-        font-size: 20px;
+        font-size: 24px;
         cursor: pointer;
         margin-left: 10px
     }

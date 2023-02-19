@@ -21,10 +21,10 @@ export const routesStructData = [
     id: RouteIds.sys,
     children: [{ id: RouteIds.role }, { id: RouteIds.user }, { id: RouteIds.test }],
   },
-  {
-    id: RouteIds.test1,
-    children: [{ id: RouteIds.test2 }],
-  },
+  // {
+  //   id: RouteIds.test1,
+  //   children: [{ id: RouteIds.test2 }],
+  // },
   {
     id: RouteIds.drag,
   },

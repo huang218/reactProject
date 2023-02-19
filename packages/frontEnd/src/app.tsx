@@ -26,6 +26,7 @@ export default observer(() => {
       sessionStorage.setItem("ACCESS_TOKEN", globalStore.token || token);
       const toStart = (data)=>{
         let temp = createRouteData(data);
+        console.log(temp,'temp')
         sessionStorage.setItem("PER", data);
         setRouter(temp);
         setRouterData(temp);
@@ -33,6 +34,10 @@ export default observer(() => {
           data = data.split(',')
         }
         setPermissions(data);
+      }
+      let name = sessionStorage.getItem("USERNAME")
+      if(!name) {
+        // 没有用户名~ 请求。。。
       }
       let per = sessionStorage.getItem("PERMISSIONS")
       if (!per) {

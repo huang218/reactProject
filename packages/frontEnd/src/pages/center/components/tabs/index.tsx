@@ -28,15 +28,14 @@ export default observer(() => {
 
   useEffect(() => {
     let tabsHistory = Object.values(toJS(globalStore.tabsHistory));
-    setItems(
-      tabsHistory.map((item) => {
-        const { pathname } = item;
-        let routeId = pathname.split("/").slice(-1)[0]
-        const { meta } = routeConfig[routeId];
-        return { label: meta.title, key: pathname };
-      })
-    );
-    console.log(items,'tabs')
+    let data = tabsHistory.map((item) => {
+      const { pathname } = item;
+      let routeId = pathname.split("/").slice(-1)[0]
+      const { meta } = routeConfig[routeId];
+      return { label: meta.title, key: pathname, closable: true };
+    })
+    // pathname !== '/center/hello'
+    setItems(data);
   }, [globalStore.tabsHistory]);
 
   // const onDragEnd = ({ active, over }: DragEndEvent) => {

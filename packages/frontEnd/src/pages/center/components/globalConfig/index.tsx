@@ -1,6 +1,7 @@
 import "react";
-import { Input, message, RadioChangeEvent } from 'antd';
-import { Drawer, Radio } from 'antd';
+import { useEffect, useState } from "react";
+import { Divider, Input, message, Segmented } from 'antd';
+import { Drawer } from 'antd';
 import { globalStore } from "@/stores/index";
 import { observer } from "mobx-react";
 import { updateConfig } from '../../service'
@@ -10,14 +11,12 @@ export default observer(({
   open,
   onClose
 }) => {
-  const optionsWithDisabled = [
-    { label: 'small', value: 'small' },
-    { label: 'middle', value: 'middle' },
-    { label: 'large', value: 'large' },
-  ];
+  const [value, setValue] = useState<string | number>(globalStore.componentsSize);
   
-  const onChange = ({ target: { value } }: RadioChangeEvent) => {
-    globalStore.setComponents(value);
+  const onChange = ( target ) => {
+    console.log(target,'target')
+    setValue(target);
+    globalStore.setComponents(target);
     updateGlobalConfig()
   };
 
@@ -36,27 +35,19 @@ export default observer(({
     })
   }
 
+
   return (
     <Drawer
       title="全局设置"
       placement="right"
       key="right"
+      width="400"
       closable={false}
       onClose={onClose}
       open={open}
     >
       <div className={styles.layout}>
-        <span>组件大小：</span>
-        <Radio.Group
-          options={optionsWithDisabled}
-          onChange={onChange}
-          value={globalStore.componentsSize}
-          optionType="button"
-          buttonStyle="solid"
-        />
-      </div>
-      <div className={styles.layout}>
-        <span>主题颜色：</span>
+        <div className={styles.name}>主题颜色：</div>
         <Input 
           type="color" 
           name="color" 
@@ -65,6 +56,11 @@ export default observer(({
           onChange={colorPickup} 
           onBlur={updateGlobalConfig}
         />
+      </div>
+      <Divider />
+      <div className={styles.layout}>
+        <div className={styles.name}>组件大小：</div>
+        <Segmented block options={['small', 'middle', 'large']} value={value} onChange={onChange} />
       </div>
     </Drawer>
   );
