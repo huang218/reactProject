@@ -35,7 +35,6 @@ export default observer(({
     })
   }
 
-
   return (
     <Drawer
       title="全局设置"

@@ -1,16 +1,10 @@
-import {
-  RouterProvider,
-  createBrowserRouter,
-  useLocation,
-  useNavigate,
-  Routes,
-  Route,
-} from "react-router-dom";
+import { useLocation, useNavigate, Routes, Route } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { globalStore } from "@/stores/index";
 import { createRouteData, routeData } from "@/router/index";
 import { observer } from "mobx-react";
 import { getPermissions, getGlobalConfig } from "./service";
+import Errors from '@/pages/error/404';
 import Login from "./pages/login";
 import Layout from "./pages/layout";
 
@@ -110,7 +104,7 @@ export default observer(() => {
     <>
       {routerData && (
         <Routes>
-          <Route path="/" element={<Login></Login>}></Route>
+          <Route path="/" element={<Login />}></Route>
           <Route
             path="/layout"
             element={<Layout></Layout>}
@@ -119,7 +113,7 @@ export default observer(() => {
             })}
           ></Route>
           {/* 404页面处理 */}
-          <Route path="*" element={<div>没有页面</div>} />
+          <Route path="*" element={<Errors />} />
         </Routes>
       )}
     </>

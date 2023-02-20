@@ -19,6 +19,7 @@ export default () => {
       globalStore.setToken(token);
       globalStore.setUserName(user)
       naviagte("/layout/hello");
+      // document.title = '登录页'
     }).catch(err => {
       messageApi.open({
         type: 'error',

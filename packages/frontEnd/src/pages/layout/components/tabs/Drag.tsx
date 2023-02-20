@@ -41,7 +41,6 @@ const DraggableTabNode = ({ nodes, className, onActiveBarTransform, ...props }: 
             onActiveBarTransform('');
         }else if (className?.includes('ant-tabs-tab-active')) {
             console.log('拖动')
-            // console.log(className, 'style',)
             onActiveBarTransform(
                 css`
                 .ant-tabs-ink-bar {

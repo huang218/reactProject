@@ -14,6 +14,7 @@ import GlobalConfig from "./components/globalConfig";
 import useLocationListen from "@/common/hooks/useLocationListen";
 import KeepAlive from "@/common/hocs/keepAlive";
 import routerConfig from "@/router/config";
+import { assign } from "mobx/dist/internal";
 const { Header, Content, Sider } = Layout;
 
 const processRoute = (data, result: any) => {
@@ -31,6 +32,16 @@ const processRoute = (data, result: any) => {
   });
 };
 
+const obtainTitle = (key) => {
+  let obj = {}
+  Object.keys(routerConfig).forEach(h => {
+    if(routerConfig[h].path == key){
+      obj = Object.assign({}, routerConfig[h])
+    }
+  })
+  return obj
+}
+
 const layout = observer(() => {
   const navigate = useNavigate();
   const [defaultOpenKeys, setDefaultOpenKeys] = useState([]);
@@ -44,7 +55,10 @@ const layout = observer(() => {
 
   // 路由监听
   useLocationListen((location: Location) => {
+    console.log(routerConfig,'路由监听',location)
     const { pathname } = location;
+    const routeInfo: { title?:string } = obtainTitle(pathname);
+    document.title = routeInfo?.title
     let temp = pathname.split("/").filter((item) => {
       return item;
     });
@@ -171,15 +185,6 @@ const layout = observer(() => {
                 include={Object.keys(toJS(globalStore.tabsHistory))}
                 keys={toJS(globalStore.tabsHistory)}
               ></KeepAlive>
-              {/* <TransitionGroup component={ null }>
-                <CSSTransition
-                    key={ pathname + cacheKeys[pathname] }
-                    appear={ true }
-                    timeout={ 500 }
-                    classNames='page-fade'>
-                    { outlet } 
-                </CSSTransition>
-            </TransitionGroup> */}
             </div>
           </Content>
         </Layout>

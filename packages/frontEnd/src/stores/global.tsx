@@ -1,6 +1,7 @@
 import { action, makeAutoObservable, toJS } from "mobx";
 import type { SizeType } from 'antd/es/config-provider/SizeContext';
 import type { tabsType } from '../common/hocs/keepAlives'
+
 // Model the application state.
 class Global {
   routerData = null;
@@ -41,7 +42,6 @@ class Global {
       Reflect.deleteProperty(temp, pathName);
       this.tabsHistory = temp;
     }
-
   };
   setPermissions = (permissions) => {
     this.permissions = permissions;
@@ -58,7 +58,7 @@ class Global {
   setUserName = (name) => {
     this.userName = name;
     sessionStorage.setItem("USERNAME", name)
-  }
+  };
 }
 
 export default new Global();
