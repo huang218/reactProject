@@ -5,12 +5,11 @@ import { globalStore } from "@/stores/index";
 import {
   BTN_PERMISSIONS,
   ActionsPermissionConfig,
-  type BtnItemT,
 } from "@/permissions/actionConfig";
 import SearchForm from "./components/searchForm";
 import type { ColumnsType } from "antd/es/table";
 import { useEffect } from "react";
-import { centerRouteDta, routesStructData } from "@/router/index";
+import { routesStructData } from "@/router/index";
 import routerConfig from "@/router/config";
 import { useState } from "react";
 import { updatePermissions } from "./service";
@@ -110,7 +109,6 @@ export default(props) => {
     let result = [];
     processPermission(routesStructData, result);
     setPer(result);
-    console.log(result,'权限',permissions)
   }, []);
 
 

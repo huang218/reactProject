@@ -1,6 +1,6 @@
 import { Page1, Hello, UserPage, RolePage, Drag, Echarts } from "../pages";
 export default {
-  center: {
+  layout: {
     meta: {
       title: "中心",
     },
@@ -8,18 +8,21 @@ export default {
   hello: {
     meta: {
       title: "首页",
+      icon: 'a-1shouye'
     },
     component: Hello,
-    title: '首页'
+    title: '首页',
   },
   sys: {
     meta: {
       title: "系统管理",
+      icon: 'a-9jichushezhi'
     },
   },
   user: {
     meta: {
       title: "用户管理",
+      icon: 'yonghuguanli1'
     },
     title: '用户管理',
     component: UserPage,
@@ -27,6 +30,7 @@ export default {
   role: {
     meta: {
       title: "角色管理",
+      icon: 'anpaishishijingli'
     },
     title: '角色管理',
     component: RolePage,
@@ -35,13 +39,15 @@ export default {
   test: {
     meta: {
       title: "网络测试",
+      icon: 'a-6baogaomoban'
     },
     title: '网络测试',
     component: Page1
   },
   drag: {
     meta: {
-      title: '拖拽模块'
+      title: '拖拽模块',
+      icon: 'a-1wodemokuai'
     },
     title: '拖拽模块',
     component: Drag
@@ -63,6 +69,7 @@ export default {
   test3: {
     meta: {
       title: "Echarts图",
+      icon: 'zidingyi15'
     },
     title: 'Echarts图',
     component: Echarts

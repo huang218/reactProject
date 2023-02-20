@@ -1,9 +1,9 @@
 import { useRef, useEffect, useReducer, useMemo, memo } from 'react'
-import { SwitchTransition, TransitionGroup, CSSTransition } from 'react-transition-group'
+import { TransitionGroup, CSSTransition } from 'react-transition-group'
 import { useLocation, useOutlet } from 'react-router-dom'
 import { globalStore } from "@/stores/index";
 import styles from './index.module.scss'
-import type { tabsType } from './keepAlive.d'
+import type { tabsType } from './keepAlives'
 
 
 const KeepAlive = (props: {

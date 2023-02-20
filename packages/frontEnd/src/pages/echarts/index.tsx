@@ -6,6 +6,7 @@ const Echarts = () => {
   return(
     <>
       Echarts
+      <div className='iconfont icon-jiancebaogao1' style={{color: '#ccc'}}></div>
     </>
   )
 }

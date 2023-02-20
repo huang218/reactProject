@@ -1,21 +1,8 @@
 import * as React from 'react';
 import { ReactElement, ReactNode } from 'react';
-import {
-  DndContext,
-  closestCenter,
-  KeyboardSensor,
-  PointerSensor,
-  useSensor,
-  useSensors,
-  DragEndEvent,
-  MouseSensor,
-} from '@dnd-kit/core';
-import {
-  arrayMove,
-  SortableContext,
-  sortableKeyboardCoordinates,
-  useSortable,
-} from '@dnd-kit/sortable';
+import { DndContext, closestCenter, KeyboardSensor, useSensor, useSensors, MouseSensor } from '@dnd-kit/core';
+import type { DragEndEvent } from '@dnd-kit/core';
+import { arrayMove, SortableContext, sortableKeyboardCoordinates, useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import { css } from '@emotion/css';
 import styles from './index.module.scss'
@@ -142,7 +129,7 @@ export const SortItemDndKit = ({ id, children }: SortItemType) => {
       style,
       ...attributes,
       ...listeners,
-    //   onClick: newClick
+      onClick: () => console.log('1')
     };
     return React.cloneElement(child, childProps);
   });

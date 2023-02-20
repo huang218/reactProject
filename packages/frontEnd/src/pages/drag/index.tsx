@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import {SortListDndKit, SortItemDndKit} from '@/common/components/elementDrag/index';
+import { SortListDndKit, SortItemDndKit } from '@/common/components/elementDrag/index';
 import styles from './index.module.scss'
 
 type dataType = {
@@ -15,10 +15,10 @@ export default () => {
 
     const getData = async () => {
         setTimeout(() => {
-        const data = new Array(10).fill('标题-').map((s,i) => (
-            {id: 'id-' + i, title: s + i}
-        ))
-        setList(data)
+            const data = new Array(10).fill('标题-').map((s,i) => (
+                {id: 'id-' + i, title: s + i}
+            ))
+            setList(data)
         }, 200);
     }
 
@@ -37,7 +37,7 @@ export default () => {
                 {list.map((item, index) => (
                     <div key={index} className={styles.dragItem}>
                         <SortItemDndKit key={item.id} id={item.id}>
-                            <div className={styles.item}>
+                            <div className={styles.item} onClick={() => console.log('22')}>
                                 {item.title}
                             </div>
                         </SortItemDndKit>

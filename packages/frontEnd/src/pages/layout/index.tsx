@@ -1,14 +1,9 @@
 import { useEffect, useState, createElement } from "react";
-import { UserOutlined } from "@ant-design/icons";
 import { Avatar, Layout, Menu, Modal, Space } from "antd";
 import type { MenuProps } from 'antd';
 import styles from "./index.module.scss";
 import { globalStore } from "@/stores/index";
-import {
-  useNavigate,
-  useLocation,
-  type Location,
-} from "react-router-dom";
+import { useNavigate, type Location } from "react-router-dom";
 import { PoweroffOutlined, MenuUnfoldOutlined, MenuFoldOutlined, SettingOutlined } from '@ant-design/icons';
 import { observer } from "mobx-react";
 import { toJS } from "mobx";
@@ -25,7 +20,7 @@ const processRoute = (data, result: any) => {
   data.forEach((item) => {
     let temp: any = {
       key: item.routeId,
-      icon: createElement(UserOutlined),
+      icon: createElement("div", {className: `iconfont icon-${item.meta.icon}`}),
       label: item.meta.title,
     };
     result.push(temp);
@@ -36,7 +31,7 @@ const processRoute = (data, result: any) => {
   });
 };
 
-const center = observer(() => {
+const layout = observer(() => {
   const navigate = useNavigate();
   const [defaultOpenKeys, setDefaultOpenKeys] = useState([]);
   const [defaultSelectedKeys, setDefaultSelectedKeys] = useState([]);
@@ -64,10 +59,10 @@ const center = observer(() => {
   });
 
   useEffect(() => {
-    console.log('监听routerData')
     if (routerData.length) {
       let result = [];
       processRoute(routerData[1].children, result);
+      console.log('result',result)
       setMenuData(result);
     }
   }, [routerData]);
@@ -194,4 +189,4 @@ const center = observer(() => {
   );
 });
 
-export default themeProviderHoc(center);
+export default themeProviderHoc(layout);

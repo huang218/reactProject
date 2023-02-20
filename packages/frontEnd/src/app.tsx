@@ -12,7 +12,7 @@ import { createRouteData, routeData } from "@/router/index";
 import { observer } from "mobx-react";
 import { getPermissions, getGlobalConfig } from "./service";
 import Login from "./pages/login";
-import Center from "./pages/center";
+import Layout from "./pages/layout";
 
 export default observer(() => {
   const { pathname } = useLocation()
@@ -26,7 +26,6 @@ export default observer(() => {
       sessionStorage.setItem("ACCESS_TOKEN", globalStore.token || token);
       const toStart = (data)=>{
         let temp = createRouteData(data);
-        console.log(temp,'temp')
         sessionStorage.setItem("PER", data);
         setRouter(temp);
         setRouterData(temp);
@@ -48,7 +47,7 @@ export default observer(() => {
             toStart(data)
           })
           .finally(() => {
-            navigate("/center/hello");
+            navigate("/layout/hello");
           });
       }else{
         toStart(per)
@@ -113,8 +112,8 @@ export default observer(() => {
         <Routes>
           <Route path="/" element={<Login></Login>}></Route>
           <Route
-            path="/center"
-            element={<Center></Center>}
+            path="/layout"
+            element={<Layout></Layout>}
             children={routerData?.[1]?.children?.map((item) => {
               return toRenderRoute(item);
             })}

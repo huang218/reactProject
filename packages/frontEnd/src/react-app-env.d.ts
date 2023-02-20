@@ -70,4 +70,7 @@ declare module '*.module.sass' {
   export default classes;
 }
 
-declare module '@dnd-kit/utilities'
+// declare module '@dnd-kit/core'
+// declare module '@dnd-kit/utilities'
+// declare module '@dnd-kit/sortable'
+// declare module '@emotion/css'

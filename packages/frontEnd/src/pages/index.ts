@@ -1,5 +1,5 @@
 import { lazy } from "react";
-const Center = lazy(() => import("./center"));
+const Layout = lazy(() => import("./layout"));
 const Login = lazy(() => import("./login"));
 const Page1 = lazy(() => import("./page1"));
 const Hello = lazy(() => import("./hello"));
@@ -8,7 +8,7 @@ const RolePage = lazy(() => import("./sys/role"));
 const Drag = lazy(() => import("./drag"));
 const Echarts = lazy(() => import("./echarts"))
 export { 
-    Center, 
+    Layout, 
     Login, 
     Page1, 
     Hello, 

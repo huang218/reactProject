@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import { Login, Center } from "../pages";
+import { Login, Layout } from "../pages";
 import routerConfig from "./config";
 export const RouteIds = {
   hello: "hello",
@@ -62,10 +62,10 @@ const processRoute = (children: any[], routesData: any[], prefix: string) => {
 export let centerRouteDta = {
   id: RouteIds.hello,
   name: "中心",
-  path: "/center",
+  path: "/layout",
   element: (
     <Suspense>
-      <Center></Center>
+      <Layout></Layout>
     </Suspense>
   ),
   children: [],
@@ -83,7 +83,7 @@ let permissions = [];
 export const createRouteData = (per) => {
   let result = [];
   permissions = per;
-  processRoute(result, routesStructData, "/center");
+  processRoute(result, routesStructData, "/layout");
   centerRouteDta.children = [];
   centerRouteDta.children = result;
   return routeData;
