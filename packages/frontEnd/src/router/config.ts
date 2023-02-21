@@ -1,4 +1,4 @@
-import { Page1, Hello, UserPage, RolePage, Drag, Echarts } from "../pages";
+import { Page1, Hello, UserPage, RolePage, Drag, Echarts, Tree } from "../pages";
 export default {
   layout: {
     meta: {
@@ -52,13 +52,14 @@ export default {
     title: '拖拽模块',
     component: Drag
   },
-  // test1: {
-  //   meta: {
-  //     title: "测试一",
-  //   },
-  //   title: '测试一',
-  //   component: Page1
-  // },
+  tree: {
+    meta: {
+      title: "树组件",
+      icon: 'a-5jiancecanshu'
+    },
+    title: '树组件',
+    component: Tree
+  },
   test2: {
     meta: {
       title: "测试二",

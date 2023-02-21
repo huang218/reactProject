@@ -1,0 +1,28 @@
+.draggable_tree {
+  :global {
+    .ant-tree-title {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      overflow: hidden;
+    }
+  }
+  .title {
+    display: flex;
+    .name {
+      white-space: nowrap;
+    }
+    .inputs {
+      height: 26px;
+    }
+  }
+  .transit {
+    transition: all .3s;
+  }
+  .hovers {
+    color: #ccc;
+  }
+  .hovers:hover {
+    color: blue !important;
+  }
+}

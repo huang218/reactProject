@@ -10,7 +10,8 @@ export const RouteIds = {
   test1: "test1",
   test2: "test2",
   test3: "test3",
-  drag: "drag"
+  drag: "drag",
+  tree: "tree"
 };
 
 export const routesStructData = [
@@ -21,10 +22,9 @@ export const routesStructData = [
     id: RouteIds.sys,
     children: [{ id: RouteIds.role }, { id: RouteIds.user }, { id: RouteIds.test }],
   },
-  // {
-  //   id: RouteIds.test1,
-  //   children: [{ id: RouteIds.test2 }],
-  // },
+  {
+    id: RouteIds.tree,
+  },
   {
     id: RouteIds.drag,
   },

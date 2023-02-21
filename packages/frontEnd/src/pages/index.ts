@@ -6,7 +6,8 @@ const Hello = lazy(() => import("./hello"));
 const UserPage = lazy(() => import("./sys/user"));
 const RolePage = lazy(() => import("./sys/role"));
 const Drag = lazy(() => import("./drag"));
-const Echarts = lazy(() => import("./echarts"))
+const Echarts = lazy(() => import("./echarts"));
+const Tree = lazy(() => import("./tree"));
 export { 
     Layout, 
     Login, 
@@ -15,5 +16,6 @@ export {
     UserPage, 
     RolePage,
     Drag,
-    Echarts
+    Echarts,
+    Tree
 };
