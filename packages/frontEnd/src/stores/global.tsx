@@ -7,6 +7,7 @@ class Global {
   routerData = null;
   token = "";
   userName = sessionStorage.getItem("USERNAME");
+  userImage = "";
   tabsHistory: tabsType = {};
   permissions: any[] = [];
   componentsSize: SizeType = "small";
@@ -21,6 +22,7 @@ class Global {
     this.routerData = [];
     this.token = "";
     this.userName = "";
+    this.userImage = "";
     this.tabsHistory = {};
     this.permissions = [];
     this.animationControl = false;
@@ -59,6 +61,9 @@ class Global {
     this.userName = name;
     sessionStorage.setItem("USERNAME", name)
   };
+  setUserImage = (url) => {
+    this.userImage = url;
+  }
 }
 
 export default new Global();

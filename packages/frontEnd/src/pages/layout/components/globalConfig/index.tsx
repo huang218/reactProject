@@ -4,6 +4,7 @@ import { Divider, Input, message, Segmented } from 'antd';
 import { Drawer } from 'antd';
 import { globalStore } from "@/stores/index";
 import { observer } from "mobx-react";
+import UploadImage from '@/common/components/uploadImage';
 import { updateConfig } from '../../service'
 import styles from "./index.module.scss";
 
@@ -25,10 +26,11 @@ export default observer(({
   }
 
   const updateGlobalConfig = () => {
-    const { componentsSize, themeColor } = globalStore
+    const { componentsSize, themeColor, userImage } = globalStore
     updateConfig({
       componentsSize,
-      themeColor 
+      themeColor,
+      userImage
     }).then(res => {
       message.success(res.data.msg)
       sessionStorage.setItem("GLOBAL_CONFIG", JSON.stringify({ componentsSize, themeColor }))
@@ -60,6 +62,10 @@ export default observer(({
       <div className={styles.layout}>
         <div className={styles.name}>组件大小：</div>
         <Segmented block options={['small', 'middle', 'large']} value={value} onChange={onChange} />
+      </div><Divider />
+      <div className={styles.layout}>
+        <div className={styles.name}>头像上传：</div>
+        <UploadImage update={updateGlobalConfig} />
       </div>
     </Drawer>
   );

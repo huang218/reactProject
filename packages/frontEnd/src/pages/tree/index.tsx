@@ -1,5 +1,6 @@
 import { DataNode } from 'antd/es/tree';
 import * as React from 'react';
+import { useEffect, useId } from 'react';
 import TreeNode from './components/tree';
 
 let treeData: DataNode[] = [
@@ -56,6 +57,16 @@ let treeData: DataNode[] = [
 ]
 
 const Tree = () => {
+  const id = useId();
+  useEffect(() => {
+    console.log(id,'id1')
+    console.log(id,'id2')
+  
+    return () => {
+      console.log('销毁')
+    }
+  }, [])
+  
 
   const afterAdd = (...props) => {
     console.log(props,'新增后返回')

@@ -49,14 +49,16 @@ export default observer(() => {
       let config = sessionStorage.getItem("GLOBAL_CONFIG")
       if(!config) {
         getGlobalConfig().then(res => {
-          const { componentsSize, themeColor } = res.data
+          const { componentsSize, themeColor, userImage } = res.data
           sessionStorage.setItem("GLOBAL_CONFIG", JSON.stringify(res.data))
           globalStore.setColor(themeColor);
           globalStore.setComponents(componentsSize);
+          globalStore.setUserImage(userImage);
         })
       }else {
         globalStore.setColor(JSON.parse(config).themeColor);
         globalStore.setComponents(JSON.parse(config).componentsSize);
+        globalStore.setUserImage(JSON.parse(config).userImage);
       }
     } else {
       navigate("/");

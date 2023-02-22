@@ -299,7 +299,10 @@ const App: React.FC<Props> = ({
                     className={styles.inputs} 
                     defaultValue={inputVal.current} 
                     placeholder={node.isAdd ? '新增子节点' : ''} 
-                    onChange={(e) => {if(e) e.stopPropagation();inputVal.current = e.target.value}} 
+                    onChange={(e) => {
+                      if(e) e.stopPropagation();
+                      inputVal.current = e.target.value;
+                    }} 
                     onPressEnter={(e) => {
                       if(e) e.stopPropagation();
                       node.isAdd ? confirmAdd(node) : node.isShow ? confirmEdit(node) : null;

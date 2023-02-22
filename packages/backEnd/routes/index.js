@@ -1,6 +1,5 @@
 const router = require('koa-router')()
 const fs = require('fs')
-const jwt = require('jsonwebtoken');
 const path = require('path')
 const { getJWTPayload, getToken } = require('../module/jwt')
 

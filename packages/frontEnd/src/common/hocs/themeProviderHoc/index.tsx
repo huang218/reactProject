@@ -1,5 +1,5 @@
 import "react";
-import { ConfigProvider, Button } from "antd";
+import { ConfigProvider } from "antd";
 import { globalStore } from '@/stores/index'
 import { observer } from "mobx-react";
 

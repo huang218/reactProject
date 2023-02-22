@@ -1,12 +1,15 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from "react";
 
 const Echarts = () => {
 
+ 
+
+  useEffect(() => {
+  },[])
 
   return(
     <>
-      Echarts
-      <div className='iconfont icon-jiancebaogao1' style={{color: '#ccc'}}></div>
+     
     </>
   )
 }

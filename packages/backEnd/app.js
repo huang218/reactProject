@@ -2,11 +2,20 @@ const Koa = require('koa')
 const app = new Koa()
 const views = require('koa-views')
 const json = require('koa-json')
+const koastatic = require('koa-static');
 const onerror = require('koa-onerror')
 const bodyparser = require('koa-bodyparser')
+const router = require('koa-router')()
 const logger = require('koa-logger')
 const jwtKoa = require('koa-jwt');
+const multiparty = require('multiparty');
 const fs = require('fs')
+
+const SERVER_PATH = `${__dirname}/upload`;
+const host = '127.0.0.1',
+      port = '3130';
+const HOSTNAME = `${host}:${port}`
+
 
 let routeArr = []
 const files = fs.readdirSync('./routes')
@@ -76,4 +85,49 @@ app.on('error', (err, ctx) => {
   console.error('server error', err, ctx)
 });
 
+
+//利用multiparty插件解析前端传来的form-data格式的数据，并上传至服务器
+const multipartyUpload = function multipartyUpload(req, autoUpload){
+	let config = {
+		maxFieldsSize : 200 * 1024 *1024
+	}
+	if(autoUpload) config.uploadDir = SERVER_PATH;
+	return new Promise((resolve,reject)=>{
+		new multiparty.Form(config).parse(req, (err, fields, files)=>{
+			if(err){
+				reject(err);
+				return;
+			}
+			resolve({
+        fields,
+        files
+			});
+		});
+	});
+}
+//上传单个文件（form-data），利用第三方插件multipary解析并上传
+router.post('/upload_single_file', async (ctx, next) => {
+  try {
+      let data = await multipartyUpload(ctx.req, true);
+      let userName = data && data.fields ? data.fields.user[0] : '';
+      let file = (data && data.files.files.length) ? data.files.files[0] : {};
+      const path = file.path.replace(__dirname, HOSTNAME)
+      console.log(userName,'********************************')
+      ctx.body = {
+          code: 200,
+          message: '文件上传成功',
+          originalFilename: file.originalFilename,
+          url: `http://${path}`
+      }
+  } catch (err) {
+      ctx.body = {
+          code: 1,
+          message: '文件上传失败',
+          error: err
+      }
+  }
+});
+
+app.use(koastatic('./'));
+app.use(router.routes());
 module.exports = app
