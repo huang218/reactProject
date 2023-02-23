@@ -1,6 +1,6 @@
 import { action, makeAutoObservable, toJS } from "mobx";
 import type { SizeType } from 'antd/es/config-provider/SizeContext';
-import type { tabsType } from '../common/hocs/keepAlives'
+import type { tabsType } from '../common/hocs/keepAlive/keepAlives'
 
 // Model the application state.
 class Global {

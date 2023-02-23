@@ -1,12 +1,13 @@
 import { Suspense } from "react";
 import { Login, Layout } from "../pages";
 import routerConfig from "./config";
+
 export const RouteIds = {
   hello: "hello",
   sys: "sys",
   role: "role",
   user: "user",
-  test: "test",
+  networkTest: "networkTest",
   test1: "test1",
   test2: "test2",
   test3: "test3",
@@ -20,7 +21,11 @@ export const routesStructData = [
   },
   {
     id: RouteIds.sys,
-    children: [{ id: RouteIds.role }, { id: RouteIds.user }, { id: RouteIds.test }],
+    children: [
+      { id: RouteIds.role }, 
+      { id: RouteIds.user }, 
+      { id: RouteIds.networkTest }
+    ],
   },
   {
     id: RouteIds.tree,

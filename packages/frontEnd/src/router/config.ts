@@ -1,4 +1,4 @@
-import { Page1, Hello, UserPage, RolePage, Drag, Echarts, Tree } from "../pages";
+import { NetworkTest, Hello, UserPage, RolePage, Drag, Echarts, Tree } from "../pages";
 export default {
   layout: {
     meta: {
@@ -11,12 +11,13 @@ export default {
       icon: 'a-1shouye'
     },
     component: Hello,
-    title: '首页',
+    title: '首页', // 无用~展示
   },
   sys: {
     meta: {
       title: "系统管理",
-      icon: 'a-9jichushezhi'
+      icon: 'a-9jichushezhi',
+      text: 'home.hot_recommended'
     },
   },
   user: {
@@ -36,13 +37,13 @@ export default {
     component: RolePage,
     state: { a: 1111 },
   },
-  test: {
+  networkTest: {
     meta: {
       title: "网络测试",
       icon: 'a-6baogaomoban'
     },
     title: '网络测试',
-    component: Page1
+    component: NetworkTest
   },
   drag: {
     meta: {
@@ -59,13 +60,6 @@ export default {
     },
     title: '树组件',
     component: Tree
-  },
-  test2: {
-    meta: {
-      title: "测试二",
-    },
-    title: '测试二',
-    component: Page1
   },
   test3: {
     meta: {

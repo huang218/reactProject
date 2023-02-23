@@ -13,7 +13,7 @@ const layout = {
   wrapperCol: { span: 16 },
 };
 
-export default observer(({
+export default ({
   open,
   onClose,
   search
@@ -64,4 +64,4 @@ export default observer(({
       </Form>
     </Modal>
   );
-});
+};

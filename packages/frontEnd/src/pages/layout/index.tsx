@@ -1,12 +1,11 @@
 import { useEffect, useState, createElement } from "react";
 import { Avatar, Layout, Menu, Modal, Space } from "antd";
 import type { MenuProps } from 'antd';
-import styles from "./index.module.scss";
-import { globalStore } from "@/stores/index";
 import { useNavigate, type Location } from "react-router-dom";
 import { PoweroffOutlined, MenuUnfoldOutlined, MenuFoldOutlined, SettingOutlined } from '@ant-design/icons';
 import { observer } from "mobx-react";
 import { toJS } from "mobx";
+import { globalStore } from "@/stores/index";
 import themeProviderHoc from "@/common/hocs/themeProviderHoc/index";
 import Tabs from "./components/tabs";
 import Breadcrumb from "./components/breadcrumb";
@@ -14,7 +13,7 @@ import GlobalConfig from "./components/globalConfig";
 import useLocationListen from "@/common/hooks/useLocationListen";
 import KeepAlive from "@/common/hocs/keepAlive";
 import routerConfig from "@/router/config";
-import { assign } from "mobx/dist/internal";
+import styles from "./index.module.scss";
 const { Header, Content, Sider } = Layout;
 
 const processRoute = (data, result: any) => {
@@ -51,11 +50,10 @@ const layout = observer(() => {
   const [open, setOpen] = useState(false);
   const [openKeys, setOpenKeys] = useState([]); //'sys'
   const [openKeysBackup, setOpenKeysBackup] = useState([]);
-  const { routerData = [], userName } = globalStore;
+  const { routerData = [], userImage, userName } = globalStore;
 
   // 路由监听
   useLocationListen((location: Location) => {
-    console.log(routerConfig,'路由监听',location)
     const { pathname } = location;
     const routeInfo: { title?:string } = obtainTitle(pathname);
     document.title = routeInfo?.title
@@ -146,7 +144,11 @@ const layout = observer(() => {
           </div>
           <div style={{display: 'flex'}}>
             <Space wrap size={24}>
-              <Avatar className={styles.avatar}>{ userName }</Avatar>
+              {userImage ? (
+                <Avatar src={userImage} />
+              ):(
+                <Avatar className={styles.avatar}>{ userName }</Avatar>
+              )}
             </Space>
             <SettingOutlined title="配置" className={styles.loginOut} onClick={config} />
             <PoweroffOutlined title="退出" className={styles.loginOut} onClick={loginOut} />

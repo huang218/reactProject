@@ -1,7 +1,7 @@
 import { lazy } from "react";
 const Layout = lazy(() => import("./layout"));
 const Login = lazy(() => import("./login"));
-const Page1 = lazy(() => import("./page1"));
+const NetworkTest = lazy(() => import("./networkTest"));
 const Hello = lazy(() => import("./hello"));
 const UserPage = lazy(() => import("./sys/user"));
 const RolePage = lazy(() => import("./sys/role"));
@@ -11,7 +11,7 @@ const Tree = lazy(() => import("./tree"));
 export { 
     Layout, 
     Login, 
-    Page1, 
+    NetworkTest, 
     Hello, 
     UserPage, 
     RolePage,

@@ -33,7 +33,7 @@ export default observer(({
       userImage
     }).then(res => {
       message.success(res.data.msg)
-      sessionStorage.setItem("GLOBAL_CONFIG", JSON.stringify({ componentsSize, themeColor }))
+      sessionStorage.setItem("GLOBAL_CONFIG", JSON.stringify({ componentsSize, themeColor, userImage }))
     })
   }
 

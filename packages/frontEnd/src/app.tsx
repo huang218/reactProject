@@ -1,33 +1,58 @@
 import { useLocation, useNavigate, Routes, Route } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { globalStore } from "@/stores/index";
 import { createRouteData, routeData } from "@/router/index";
 import { observer } from "mobx-react";
 import { getPermissions, getGlobalConfig } from "./service";
+import { globalStore } from "@/stores/index";
 import Errors from '@/pages/error/404';
 import Login from "./pages/login";
 import Layout from "./pages/layout";
+import { useTranslation } from 'react-i18next';
 
 export default observer(() => {
+  const { t } = useTranslation();
   const { pathname } = useLocation()
   const { setRouterData, setPermissions } = globalStore;
   const [routerData, setRouter] = useState<any>();
   const navigate = useNavigate();
+
   const token = sessionStorage.getItem("ACCESS_TOKEN");
 
+
+
+  const toRenderRoute = (item) => {
+    const { children } = item;
+    let arr = [];
+    if (children) {
+      arr = children.map((item) => {
+        return toRenderRoute(item);
+      });
+    }
+    return (
+      <Route
+        children={arr}
+        key={item.path}
+        path={item.path}
+        element={item.element}
+      />
+    );
+  };
+  const toStart = (data)=>{
+    let temp = createRouteData(data);
+    sessionStorage.setItem("PER", data);
+    console.log(temp,'temp')
+    setRouter(temp);
+    setRouterData(temp);
+    if(typeof data === 'string') {
+      data = data.split(',')
+    }
+    setPermissions(data);
+  }
+
   useEffect(() => {
+    console.log('app')
     if (globalStore.token || token) {
       sessionStorage.setItem("ACCESS_TOKEN", globalStore.token || token);
-      const toStart = (data)=>{
-        let temp = createRouteData(data);
-        sessionStorage.setItem("PER", data);
-        setRouter(temp);
-        setRouterData(temp);
-        if(typeof data === 'string') {
-          data = data.split(',')
-        }
-        setPermissions(data);
-      }
       let name = sessionStorage.getItem("USERNAME")
       if(!name) {
         // 没有用户名~ 请求。。。
@@ -66,41 +91,6 @@ export default observer(() => {
       setRouterData(routeData);
     }
   }, [token, globalStore.token]);
-
-  // 封装一层 专门负责显示页面标题
-  // const DomTitle = ({item}) => {
-    // const data = item
-    // let route: any = {};
-    // if(data?.children?.length > 0){
-    //   data?.children.forEach(h =>{
-    //     if(h.path === pathname) {
-    //       route = h
-    //     }
-    //   })
-    // }else {
-    //   route = data
-    // }
-    // console.log(item,'标题',route)
-  //   document.title = item.title;
-  //   return item.element
-  // }
-  const toRenderRoute = (item) => {
-    const { children } = item;
-    let arr = [];
-    if (children) {
-      arr = children.map((item) => {
-        return toRenderRoute(item);
-      });
-    }
-    return (
-      <Route
-        children={arr}
-        key={item.path}
-        path={item.path}
-        element={item.element}
-      />
-    );
-  };
 
   return (
     <>
