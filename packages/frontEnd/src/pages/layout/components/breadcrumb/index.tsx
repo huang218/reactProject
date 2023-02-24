@@ -1,27 +1,29 @@
 import "react";
+import { useState } from "react";
+import { useTranslation } from 'react-i18next';
 import { Breadcrumb } from "antd";
 import routeConfig from "@/router/config";
 import type { Location } from "react-router-dom";
 import useLocationListen from "@/common/hooks/useLocationListen";
-import { useState } from "react";
+
 
 export default () => {
   const [infoArr, setInfoArr] = useState<{ id: string; info: string }[]>([]);
+  const { t } = useTranslation();
+
+
   useLocationListen((location: Location) => {
     const { pathname } = location;
     let temp = pathname.split("/").filter((item) => {
       return item;
     });
     let temp2 = temp.map((item) => {
-        return {
-          id: item,
-          info: routeConfig[item]?.meta?.title,
-        };
-      })
-      
-    setInfoArr(
-        temp2
-    );
+      return {
+        id: item,
+        info: t(routeConfig[item]?.meta?.text),
+      };
+    })
+    setInfoArr(temp2);
   });
 
   return (

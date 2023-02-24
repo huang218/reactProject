@@ -8,16 +8,16 @@ import Errors from '@/pages/error/404';
 import Login from "./pages/login";
 import Layout from "./pages/layout";
 import { useTranslation } from 'react-i18next';
+import "./i18n/config";
 
 export default observer(() => {
   const { t } = useTranslation();
   const { pathname } = useLocation()
-  const { setRouterData, setPermissions } = globalStore;
+  const { language, setRouterData, setPermissions } = globalStore;
   const [routerData, setRouter] = useState<any>();
   const navigate = useNavigate();
 
   const token = sessionStorage.getItem("ACCESS_TOKEN");
-
 
 
   const toRenderRoute = (item) => {
@@ -37,10 +37,23 @@ export default observer(() => {
       />
     );
   };
+  const routeTo = (data) => {
+    const info = data;
+    info.map(item => {
+      if(item?.children) {
+        routeTo(item.children);
+      }
+      if(item?.meta?.text) {
+        item.meta.title = t(item.meta.text)
+      }
+    })
+    return info
+  }
+
   const toStart = (data)=>{
     let temp = createRouteData(data);
+    routeTo(temp)
     sessionStorage.setItem("PER", data);
-    console.log(temp,'temp')
     setRouter(temp);
     setRouterData(temp);
     if(typeof data === 'string') {
@@ -50,13 +63,29 @@ export default observer(() => {
   }
 
   useEffect(() => {
-    console.log('app')
     if (globalStore.token || token) {
       sessionStorage.setItem("ACCESS_TOKEN", globalStore.token || token);
+      let config = sessionStorage.getItem("GLOBAL_CONFIG")
+      if(!config) {
+        getGlobalConfig().then(res => {
+          const { componentsSize, themeColor, userImage } = res.data
+          sessionStorage.setItem("GLOBAL_CONFIG", JSON.stringify(res.data))
+          globalStore.setColor(themeColor);
+          globalStore.setComponents(componentsSize);
+          globalStore.setUserImage(userImage);
+          // globalStore.setLanguage(language);
+        })
+      }else {
+        globalStore.setColor(JSON.parse(config).themeColor);
+        globalStore.setComponents(JSON.parse(config).componentsSize);
+        globalStore.setUserImage(JSON.parse(config).userImage);
+        // globalStore.setLanguage(JSON.parse(config).language);
+      }
       let name = sessionStorage.getItem("USERNAME")
       if(!name) {
         // 没有用户名~ 请求。。。
       }
+
       let per = sessionStorage.getItem("PERMISSIONS")
       if (!per) {
         getPermissions()
@@ -71,20 +100,6 @@ export default observer(() => {
       }else{
         toStart(per)
       }
-      let config = sessionStorage.getItem("GLOBAL_CONFIG")
-      if(!config) {
-        getGlobalConfig().then(res => {
-          const { componentsSize, themeColor, userImage } = res.data
-          sessionStorage.setItem("GLOBAL_CONFIG", JSON.stringify(res.data))
-          globalStore.setColor(themeColor);
-          globalStore.setComponents(componentsSize);
-          globalStore.setUserImage(userImage);
-        })
-      }else {
-        globalStore.setColor(JSON.parse(config).themeColor);
-        globalStore.setComponents(JSON.parse(config).componentsSize);
-        globalStore.setUserImage(JSON.parse(config).userImage);
-      }
     } else {
       navigate("/");
       setRouter(routeData);
@@ -92,9 +107,14 @@ export default observer(() => {
     }
   }, [token, globalStore.token]);
 
+  useEffect(() => {
+    let per = sessionStorage.getItem("PERMISSIONS")
+    toStart(per)
+  },[language])
+
   return (
     <>
-      {routerData && (
+      {routerData?.length && (
         <Routes>
           <Route path="/" element={<Login />}></Route>
           <Route

@@ -1,5 +1,6 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
+import { globalStore } from '@/stores';
 
 import enJSON from './en.json';
 import zhJSON from './zh.json';

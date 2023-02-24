@@ -2,13 +2,15 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
 import { Tabs } from "antd";
-import { globalStore } from "@/stores/index";
 import { observer } from "mobx-react";
 import { toJS } from "mobx";
-import styles from "./index.module.scss";
-import routeConfig from "@/router/config";
-import useLocationListen from "@/common/hooks/useLocationListen";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
+import useLocationListen from "@/common/hooks/useLocationListen";
+import { globalStore } from "@/stores/index";
+import routeConfig from "@/router/config";
+import styles from "./index.module.scss";
+
 // import {
 //   arrayMove,
 //   horizontalListSortingStrategy,
@@ -20,11 +22,13 @@ import { useNavigate } from "react-router-dom";
 
 
 export default observer(() => {
+  const { t } = useTranslation()
+  const navigate = useNavigate();
+
   const [activeKey, setActiveKey] = useState("");
   const [items, setItems] = useState([]);
   // const [className, setClassName] = useState('');
   // const sensor = useSensor(PointerSensor, { activationConstraint: { distance: 10 } });
-  const navigate = useNavigate();
 
   useEffect(() => {
     let tabsHistory = Object.values(toJS(globalStore.tabsHistory));
@@ -32,11 +36,11 @@ export default observer(() => {
       const { pathname } = item;
       let routeId = pathname.split("/").slice(-1)[0]
       const { meta } = routeConfig[routeId];
-      return { label: meta.title, key: pathname, closable: true };
+      return { label: t(meta.text), key: pathname, text: meta.text, closable: true };
     })
     // pathname !== '/center/hello'
     setItems(data);
-  }, [globalStore.tabsHistory]);
+  }, [globalStore.tabsHistory, globalStore.language]);
 
   // const onDragEnd = ({ active, over }: DragEndEvent) => {
   //   if (active.id !== over?.id) {

@@ -1,15 +1,41 @@
 {
   "header": {
-      "register":"注册",
-      "signin":"登陆",
-      "home": "首页"
+    "setting": "设置",
+    "exit": "退出",
+    "close": "关闭",
+    "open": "打开"
   },
-  "footer": {
-      "detail" : "版权所有 @ React"
+  "common": {
+    "add": "新增",
+    "del": "删除",
+    "confirm": "确定",
+    "cancel": "取消",
+    "del_msg_pointer": "是否删除用户?",
+    "": "请选择一条数据!"
   },
-  "home": {
-      "hot_recommended": "爆款推荐",
-      "new_arrival": "新品上市",
-      "joint_venture": "合作企业"
+  "global": {
+    "title": "全局设置",
+    "color": "主题颜色",
+    "size": "组件大小",
+    "upload": "头像上传",
+    "language": "国际化"
+  },
+  "route": {
+    "centre": "中心",
+    "hello": "首页",
+    "system": "系统管理",
+    "role": "角色管理",
+    "user": "用户管理",
+    "net_work": "网络测试",
+    "tree_comp": "树组件",
+    "drag_module": "拖拽模块",
+    "echarts_picture": "Echarts图表"
+  },
+  "sys": {
+    "user": {
+      "user_num": "用户编号",
+      "user_name": "用户名称",
+      "user_option": "操作列"
+    }
   }
 }

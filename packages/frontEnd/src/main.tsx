@@ -2,9 +2,6 @@
 import { createRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import App from "./app";
-import "./i18n/config";
-
-
 import "./index.scss";
 
 

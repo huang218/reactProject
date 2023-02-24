@@ -3,35 +3,35 @@ export default {
   layout: {
     meta: {
       title: "中心",
+      text: 'route.centre'
     },
   },
   hello: {
     meta: {
-      title: "首页",
-      icon: 'a-1shouye'
+      icon: 'a-1shouye',
+      text: 'route.hello'
     },
     component: Hello,
     title: '首页', // 无用~展示
   },
   sys: {
     meta: {
-      title: "系统管理",
       icon: 'a-9jichushezhi',
-      text: 'home.hot_recommended'
+      text: 'route.system'
     },
   },
   user: {
     meta: {
-      title: "用户管理",
-      icon: 'yonghuguanli1'
+      icon: 'yonghuguanli1',
+      text: 'route.user'
     },
     title: '用户管理',
     component: UserPage,
   },
   role: {
     meta: {
-      title: "角色管理",
-      icon: 'anpaishishijingli'
+      icon: 'anpaishishijingli',
+      text: 'route.role'
     },
     title: '角色管理',
     component: RolePage,
@@ -39,32 +39,32 @@ export default {
   },
   networkTest: {
     meta: {
-      title: "网络测试",
-      icon: 'a-6baogaomoban'
+      icon: 'a-6baogaomoban',
+      text: 'route.net_work'
     },
     title: '网络测试',
     component: NetworkTest
   },
   drag: {
     meta: {
-      title: '拖拽模块',
-      icon: 'a-1wodemokuai'
+      icon: 'a-1wodemokuai',
+      text: 'route.drag_module'
     },
     title: '拖拽模块',
     component: Drag
   },
   tree: {
     meta: {
-      title: "树组件",
-      icon: 'a-5jiancecanshu'
+      icon: 'a-5jiancecanshu',
+      text: 'route.tree_comp'
     },
     title: '树组件',
     component: Tree
   },
   test3: {
     meta: {
-      title: "Echarts图",
-      icon: 'zidingyi15'
+      icon: 'zidingyi15',
+      text: 'route.echarts_picture'
     },
     title: 'Echarts图',
     component: Echarts

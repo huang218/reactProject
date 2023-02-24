@@ -4,6 +4,8 @@ import type { ColumnsType } from "antd/es/table";
 import { Button, message, Modal, Space, Table, Tag } from "antd";
 import { ExclamationCircleFilled } from '@ant-design/icons';
 import UpdateUser from "./components/updateUser";
+import useTranslationEnum from "@/common/hooks/useTranslationEnum";
+import { useTranslation } from "react-i18next";
 import { getUser, deleteUser } from './service'
 import styles from './index.module.scss'
 import SearchForm from "./components/searchForm";
@@ -17,38 +19,38 @@ interface DataType {
   tags: string[];
 }
 
-const columns: ColumnsType<DataType> = [
-  {
-    title: "用户编号",
-    dataIndex: "id",
-    key: "id",
-    width: '100px',
-    render: (_, row, index) => <a>{index + 1}</a>,
-  },
-  {
-    title: "用户名称",
-    dataIndex: "userName",
-    key: "userName",
-    // width: '100px',
-    render: (text) => <a>{text}</a>,
-  },
-  {
-    title: "操作列",
-    key: "action",
-    render: (_, record) => (
-      <Space size="middle">
-        <a >删除</a>
-      </Space>
-    ),
-  },
-];
-
 export default () => {
   const { confirm } = Modal;
+  const { t } = useTranslation();
   const [isModel, setIsModel] = useState<Boolean>(false);
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState<DataType[]>([])
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
+  const columns: ColumnsType<DataType> = [
+    {
+      title: t('sys.user.user_num'),
+      dataIndex: "id",
+      key: "id",
+      width: '100px',
+      render: (_, row, index) => <a>{index + 1}</a>,
+    },
+    {
+      title: t('sys.user.user_name'),
+      dataIndex: "userName",
+      key: "userName",
+      // width: '100px',
+      render: (text) => <a>{text}</a>,
+    },
+    {
+      title: t('sys.user.user_option'),
+      key: "action",
+      render: (_, record) => (
+        <Space size="middle">
+          <a>{t('common.del')}</a>
+        </Space>
+      ),
+    },
+  ];
 
   const onClose = () => {
     setIsModel(!isModel);
@@ -69,12 +71,12 @@ export default () => {
       return
     }
     confirm({
-      title: '是否删除用户?',
+      title: t('common.del_msg_pointer'),
       icon: <ExclamationCircleFilled />,
       // content: 'Some descriptions',
-      okText: '确认',
+      okText: t('common.confirm'),
       okType: 'danger',
-      cancelText: '取消',
+      cancelText: t('common.cancel'),
       onOk() {
         deleteUser(selectedRowKeys).then(res => {
           message.success(res.data.message);
@@ -106,8 +108,8 @@ export default () => {
     <>
       {/* <SearchForm /> */}
       <div className={styles.btn}>
-        <Button type="primary" onClick={onClose}>新增</Button>
-        <Button type="dashed" onClick={showDeleteConfirm}>删除</Button>
+        <Button type="primary" onClick={onClose}>{useTranslationEnum('common.add')}</Button>
+        <Button type="dashed" onClick={showDeleteConfirm}>{useTranslationEnum('common.del')}</Button>
       </div>
       <div className={styles.tableUser}>
         <Table rowKey="id" loading={loading} rowSelection={rowSelection} columns={columns} dataSource={data} />

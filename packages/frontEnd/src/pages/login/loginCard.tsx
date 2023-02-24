@@ -6,7 +6,7 @@ const { Meta } = Card;
 const App: React.FC = (props: { children: ReactNode }) => (
   <Card
     hoverable
-    style={{ width: 400 }}
+    style={{ width: '400px' }}
     // cover={
     //   <img
     //     alt="example"

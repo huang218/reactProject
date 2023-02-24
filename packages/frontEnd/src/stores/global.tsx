@@ -2,6 +2,9 @@ import { action, makeAutoObservable, toJS } from "mobx";
 import type { SizeType } from 'antd/es/config-provider/SizeContext';
 import type { tabsType } from '../common/hocs/keepAlive/keepAlives'
 
+
+type langs = 'zh' | 'en' | undefined
+
 // Model the application state.
 class Global {
   routerData = null;
@@ -9,10 +12,11 @@ class Global {
   userName = sessionStorage.getItem("USERNAME");
   userImage = "";
   tabsHistory: tabsType = {};
+  animationControl: Boolean = false;
   permissions: any[] = [];
   componentsSize: SizeType = "small";
   themeColor = "#972626";
-  animationControl: Boolean = false;
+  language: langs = 'zh'; // 国际化
 
 
   constructor() {
@@ -25,6 +29,7 @@ class Global {
     this.userImage = "";
     this.tabsHistory = {};
     this.permissions = [];
+    this.language = null;
     this.animationControl = false;
   }
   setRouterData = (data) => {
@@ -63,6 +68,9 @@ class Global {
   };
   setUserImage = (url) => {
     this.userImage = url;
+  }
+  setLanguage = (type: langs) => {
+    this.language = type;
   }
 }
 

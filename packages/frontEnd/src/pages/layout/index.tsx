@@ -11,10 +11,22 @@ import Tabs from "./components/tabs";
 import Breadcrumb from "./components/breadcrumb";
 import GlobalConfig from "./components/globalConfig";
 import useLocationListen from "@/common/hooks/useLocationListen";
+import useTranslationEnum from '@/common/hooks/useTranslationEnum'
 import KeepAlive from "@/common/hocs/keepAlive";
 import routerConfig from "@/router/config";
 import styles from "./index.module.scss";
 const { Header, Content, Sider } = Layout;
+
+interface routeMeta {
+  title?: string;
+  routeId?: string;
+  path?: string;
+  meta?: {
+    icon: string;
+    text: string;
+    title: string;
+  }
+}
 
 const processRoute = (data, result: any) => {
   data.forEach((item) => {
@@ -55,8 +67,8 @@ const layout = observer(() => {
   // 路由监听
   useLocationListen((location: Location) => {
     const { pathname } = location;
-    const routeInfo: { title?:string } = obtainTitle(pathname);
-    document.title = routeInfo?.title
+    const routeInfo: routeMeta = obtainTitle(pathname);
+    document.title = routeInfo?.meta?.title
     let temp = pathname.split("/").filter((item) => {
       return item;
     });
@@ -139,6 +151,7 @@ const layout = observer(() => {
             <div className={styles.logo}>Moderate admin React</div>
             {createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
               className: styles.loginOut,
+              title: collapsed ? useTranslationEnum('header.open') : useTranslationEnum('header.close'),
               onClick: openOrClose,
             })}
           </div>
@@ -150,8 +163,8 @@ const layout = observer(() => {
                 <Avatar className={styles.avatar}>{ userName }</Avatar>
               )}
             </Space>
-            <SettingOutlined title="配置" className={styles.loginOut} onClick={config} />
-            <PoweroffOutlined title="退出" className={styles.loginOut} onClick={loginOut} />
+            <SettingOutlined title={useTranslationEnum('header.setting')} className={styles.loginOut} onClick={config} />
+            <PoweroffOutlined title={useTranslationEnum('header.exit')} className={styles.loginOut} onClick={loginOut} />
           </div>
         </div>
       </Header>

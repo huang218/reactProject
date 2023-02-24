@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import { Login, Layout } from "../pages";
 import routerConfig from "./config";
 
+
 export const RouteIds = {
   hello: "hello",
   sys: "sys",
@@ -41,7 +42,7 @@ export const routesStructData = [
 const processRoute = (children: any[], routesData: any[], prefix: string) => {
   routesData.forEach((routeItem, index) => {
     const { id } = routeItem;
-    if (permissions.includes(id)) {
+    if (permissions?.includes(id)) {
       let routeData = routerConfig[id];
       // 沿途记录，然后拼接成path
       routeData.path = prefix + "/" + id;
@@ -68,6 +69,10 @@ export let centerRouteDta = {
   id: RouteIds.hello,
   name: "中心",
   path: "/layout",
+  meta: {
+    title: "中心",
+    text: 'route.centre'
+  },
   element: (
     <Suspense>
       <Layout></Layout>
