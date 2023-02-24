@@ -7,13 +7,13 @@ import { observer } from "mobx-react";
 import *as dayjs from 'dayjs';
 import 'dayjs/locale/zh-cn';
 import UploadImage from '@/common/components/uploadImage';
-import useTranslationEnum from "@/common/hooks/useTranslationEnum";
+import { useTranslation } from "react-i18next"; 
 import { globalStore } from "@/stores/index";
 import { updateConfig } from '../../service'
 import styles from "./index.module.scss";
 
 const enmu = {
-  '中文': 'zh',
+  '简体中文': 'zh',
   'English': 'en'
 }
 
@@ -21,8 +21,9 @@ export default observer(({
   open,
   onClose
 }) => {
+  const { t } = useTranslation()
   const [value, setValue] = useState<string | number>(globalStore.componentsSize);
-  const [language, setLanguage] = useState<string>('中文')
+  const [language, setLanguage] = useState<string>('English')
   
   // 切换除路由之外的语言
   const changeLanguage = (val) => {
@@ -50,17 +51,16 @@ export default observer(({
     updateConfig({
       componentsSize,
       themeColor,
-      userImage,
-      language
+      userImage
     }).then(res => {
-      message.success(res.data.msg)
+      message.success(t(`server.${res.data._msg}`))
       sessionStorage.setItem("GLOBAL_CONFIG", JSON.stringify({ componentsSize, themeColor, userImage }))
     })
   }
 
   return (
     <Drawer
-      title={useTranslationEnum('global.title')}
+      title={t('global.title')}
       placement="right"
       key="right"
       width="400px"
@@ -69,7 +69,7 @@ export default observer(({
       open={open}
     >
       <div className={styles.layout}>
-        <div className={styles.name}>{useTranslationEnum('global.color')}：</div>
+        <div className={styles.name}>{t('global.color')}：</div>
         <Input 
           type="color" 
           name="color" 
@@ -81,18 +81,18 @@ export default observer(({
       </div>
       <Divider />
       <div className={styles.layout}>
-        <div className={styles.name}>{useTranslationEnum('global.size')}：</div>
+        <div className={styles.name}>{t('global.size')}：</div>
         <Segmented block options={['small', 'middle', 'large']} value={value} onChange={onChange} />
       </div>
       <Divider />
       <div className={styles.layout}>
-        <div className={styles.name}>{useTranslationEnum('global.upload')}：</div>
+        <div className={styles.name}>{t('global.upload')}：</div>
         <UploadImage update={updateGlobalConfig} />
       </div>
       <Divider />
       <div className={styles.layout}>
-        <div className={styles.name}>{useTranslationEnum('global.language')}：</div>
-        <Segmented block options={['中文', 'English']} value={language} onChange={internationalization} />
+        <div className={styles.name}>{t('global.language')}：</div>
+        <Segmented block options={['简体中文', 'English']} value={language} onChange={internationalization} />
       </div>
     </Drawer>
   );

@@ -88,7 +88,7 @@ router.post("/updateConfig", async (ctx, next) => {
     status: 1,
     code: "200",
     data: {
-      msg: '更新成功'
+      _msg: 'update_success'
     },
   }
 })
@@ -131,7 +131,9 @@ router.post("/updateUser", async (ctx, next) => {
           resolve()
         })
       }else {
-        rejected("用户名重复")
+        rejected({
+          _msg: "repeat_user"
+        })
       }
      
     })
@@ -140,7 +142,7 @@ router.post("/updateUser", async (ctx, next) => {
     status: 1,
     code: "200",
     data: {
-      msg: '更新成功'
+      _msg: 'update_success'
     },
   }
 })

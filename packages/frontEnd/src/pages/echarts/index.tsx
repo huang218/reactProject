@@ -13,6 +13,16 @@ const Test = () => {
 
   return(
     <>
+      <div
+        style={{
+          boxShadow: 'border-box',
+          width: '100px',
+          height: "100px",
+          margin: '10px',
+          padding: '10px',
+          border: '1px solid red'
+        }}
+      ></div>
       <Select showSearch style={{ width: 200 }}>
         <Select.Option value="jack">jack</Select.Option>
         <Select.Option value="lucy">lucy</Select.Option>

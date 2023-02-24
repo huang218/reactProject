@@ -11,6 +11,7 @@ import Tabs from "./components/tabs";
 import Breadcrumb from "./components/breadcrumb";
 import GlobalConfig from "./components/globalConfig";
 import useLocationListen from "@/common/hooks/useLocationListen";
+import { useTranslation } from "react-i18next";
 import useTranslationEnum from '@/common/hooks/useTranslationEnum'
 import KeepAlive from "@/common/hocs/keepAlive";
 import routerConfig from "@/router/config";
@@ -55,6 +56,7 @@ const obtainTitle = (key) => {
 
 const layout = observer(() => {
   const navigate = useNavigate();
+  const { t } = useTranslation()
   const [defaultOpenKeys, setDefaultOpenKeys] = useState([]);
   const [defaultSelectedKeys, setDefaultSelectedKeys] = useState([]);
   const [menuData, setMenuData] = useState([]);
@@ -93,9 +95,9 @@ const layout = observer(() => {
 
   const loginOut = () => {
     Modal.confirm({
-      title: "是否退出登录？",
-      cancelText: '取消',
-      okText: '确定',
+      title: t('common.log_out'),
+      cancelText: t('common.cancel'),
+      okText: t('common.confirm'),
       // content: "更新权限之后，需要重新登陆",
       onOk: () => {
         sessionStorage.removeItem("ACCESS_TOKEN");

@@ -5,12 +5,19 @@
         "close": "close",
         "open": "open"
     },
+    "server": {
+        "update_success": "Update succeeded",
+        "delete_success": "Delete succeeded",
+        "repeat_user": "Repeat of user name"
+    },
     "common": {
         "add": "Add",
         "del": "Delete",
         "confirm": "confirm",
         "cancel": "cancel",
-        "del_msg_pointer": "Delete user or not?"
+        "del_msg_pointer": "Delete user or not?",
+        "null_value": "Please select a piece of data!",
+        "log_out": "Whether to log out?"
     },
     "global": {
         "title": "Global settings",
@@ -34,7 +41,11 @@
         "user": {
             "user_num": "Num",
             "user_name": "Name",
-            "user_option": "Option"
+            "user_option": "Option",
+            "account": "Account",
+            "password": "Password",
+            "msg_account": "Please enter the account number!",
+            "msg_password": "Please input a password!"
         }
     }
 }

@@ -1,12 +1,8 @@
 import "react";
-import { Form, Input, message, Modal, RadioChangeEvent } from 'antd';
-import { Drawer, Radio } from 'antd';
-import { globalStore } from "@/stores/index";
-import { observer } from "mobx-react";
-import type { FormInstance } from 'antd/es/form';
+import { Form, Input, message, Modal } from 'antd';
 import { updateUser } from '../../service'
-import styles from "./index.module.scss";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const layout = {
   labelCol: { span: 5 },
@@ -19,12 +15,14 @@ export default ({
   search
 }) => {
   const [form] = Form.useForm();
+  const { t } = useTranslation();
+
   const [passwordVisible, setPasswordVisible] = useState(false);
   const submit = () => {
     form.validateFields()
       .then((values) => {
         updateUser(values).then(res => {
-          message.success(res.data.msg);
+          message.success(t(`server.${res.data._msg}`));
           search();
           form.resetFields(); // 重置
         }).catch(err => {
@@ -32,7 +30,6 @@ export default ({
         }).finally(() => {
           onClose()
         })
-        
       })
       .catch((info) => {
         console.log('Validate Failed:', info);
@@ -45,20 +42,20 @@ export default ({
 
   return (
     <Modal
-      title="新增"
+      title={t('common.add')}
       open={open}
       onOk={submit}
       onCancel={onClose}
       destroyOnClose={true}
       maskClosable={false}
-      okText="确认"
-      cancelText="取消"
+      okText={t('common.confirm')}
+      cancelText={t('common.cancel')}
     >
       <Form {...layout} form={form} name="control-hooks" onFinish={onFinish}>
-        <Form.Item name="userName" label="账号" rules={[{ required: true, message: '请输入账号!' }]}>
+        <Form.Item name="userName" label={t('sys.user.account')} rules={[{ required: true, message: t('sys.user.msg_account') }]}>
           <Input allowClear showCount maxLength={20} />
         </Form.Item>
-        <Form.Item name="passWord" label="密码" rules={[{ required: true, message: '请输入密码!' }]}>
+        <Form.Item name="passWord" label={t('sys.user.password')} rules={[{ required: true, message: t('sys.user.msg_password') }]}>
           <Input.Password type="password" visibilityToggle={{ visible: passwordVisible, onVisibleChange: setPasswordVisible }} allowClear maxLength={20} />
         </Form.Item>
       </Form>

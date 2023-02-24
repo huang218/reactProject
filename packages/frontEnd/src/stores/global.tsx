@@ -16,7 +16,7 @@ class Global {
   permissions: any[] = [];
   componentsSize: SizeType = "small";
   themeColor = "#972626";
-  language: langs = 'zh'; // 国际化
+  language: langs = 'en'; // 国际化
 
 
   constructor() {

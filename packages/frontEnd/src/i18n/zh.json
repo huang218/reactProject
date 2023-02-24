@@ -5,13 +5,19 @@
     "close": "关闭",
     "open": "打开"
   },
+  "server": {
+    "update_success": "更新成功",
+    "delete_success": "删除成功",
+    "repeat_user": "用户名重复"
+  },
   "common": {
     "add": "新增",
     "del": "删除",
     "confirm": "确定",
     "cancel": "取消",
     "del_msg_pointer": "是否删除用户?",
-    "": "请选择一条数据!"
+    "null_value": "请选择一条数据!",
+    "log_out": "是否退出登录?"
   },
   "global": {
     "title": "全局设置",
@@ -35,7 +41,11 @@
     "user": {
       "user_num": "用户编号",
       "user_name": "用户名称",
-      "user_option": "操作列"
+      "user_option": "操作列",
+      "account": "账号",
+      "password": "密码",
+      "msg_account": "请输入账号!",
+      "msg_password": "请输入密码!"
     }
   }
 }

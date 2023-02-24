@@ -67,7 +67,7 @@ export default () => {
 
   const showDeleteConfirm = () => {
     if(!selectedRowKeys.length) {
-      message.warning('请选择一条数据!')
+      message.warning(t('common.null_value'))
       return
     }
     confirm({
