@@ -27,7 +27,7 @@
         "language": "internationalization"
     },
     "route": {
-        "centre": "centre",
+        "centre": "Centre",
         "hello": "Home page",
         "system": "System manage",
         "role": "Role manage",

@@ -18,7 +18,7 @@ export default () => {
       const { token, user } = res.data;
       globalStore.setToken(token);
       globalStore.setUserName(user)
-      naviagte("/layout/hello");
+      // naviagte("/layout/hello");
     }).catch(err => {
       messageApi.open({
         type: 'error',
