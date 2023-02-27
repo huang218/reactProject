@@ -196,7 +196,7 @@ router.post("/deleteUser", async(ctx, next) => {
     code: "200",
     success: true,
     data: {
-      message: '删除成功'
+      _msg: 'delete_success'
     }
     // data: permissions,
     // totle: permissions.length

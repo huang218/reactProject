@@ -38,6 +38,7 @@ const processPermission = (routesData: any[], newData: any[]) => {
   routesData.forEach((routeStructItem) => {
     const { id } = routeStructItem;
     let routeItem = routerConfig[id];
+    console.log(routeItem,'===',id)
     routeItem.routeId = id;
     let item: any = {
       title: routeItem.meta.title,
@@ -108,6 +109,7 @@ export default(props) => {
   useEffect(() => {
     let result = [];
     processPermission(routesStructData, result);
+    console.log(result,'result',routesStructData)
     setPer(result);
   }, []);
 

@@ -15,11 +15,13 @@
     "del": "删除",
     "confirm": "确定",
     "cancel": "取消",
+    "incorrect": "不正确",
     "del_msg_pointer": "是否删除用户?",
     "null_value": "请选择一条数据!",
     "log_out": "是否退出登录?"
   },
   "global": {
+    "proview": "预览",
     "title": "全局设置",
     "color": "主题颜色",
     "size": "组件大小",
@@ -36,6 +38,14 @@
     "tree_comp": "树组件",
     "drag_module": "拖拽模块",
     "echarts_picture": "Echarts图表"
+  },
+  "network": {
+    "test_obj": "测试对象",
+    "ip": "Ip地址",
+    "realm_name": "域名",
+    "test": "测试",
+    "enter_field_name": "请输入域名！",
+    "enter_ip": "请输入Ip！"
   },
   "sys": {
     "user": {

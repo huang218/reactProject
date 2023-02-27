@@ -79,7 +79,7 @@ export default () => {
       cancelText: t('common.cancel'),
       onOk() {
         deleteUser(selectedRowKeys).then(res => {
-          message.success(res.data.message);
+          message.success(t(`server.${res.data._msg}`));
           search()
         })
       },
