@@ -15,11 +15,13 @@
         "del": "Delete",
         "confirm": "confirm",
         "cancel": "cancel",
+        "incorrect": "incorrect",
         "del_msg_pointer": "Delete user or not?",
         "null_value": "Please select a piece of data!",
         "log_out": "Whether to log out?"
     },
     "global": {
+        "proview": "Preview",
         "title": "Global settings",
         "color": "Theme color",
         "size": "Component size",
@@ -36,6 +38,14 @@
         "tree_comp": "Tree component",
         "drag_module": "Drag module",
         "echarts_picture": "Echarts Chart"
+    },
+    "network": {
+        "test_obj": "Test object",
+        "ip": "Ip address",
+        "realm_name": "Realm name",
+        "test": "Test",
+        "enter_field_name": "Please enter the domain name！",
+        "enter_ip": "Please enter Ip！"
     },
     "sys": {
         "user": {

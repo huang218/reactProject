@@ -5,6 +5,7 @@ import type{ RcFile, UploadFile, UploadProps } from 'antd/es/upload/interface';
 import { useEffect, useState } from 'react';
 import { globalStore } from "@/stores/index";
 import { uploadFile } from './service';
+import { t } from 'i18next';
 
 const Uploads = ({
   update
@@ -85,7 +86,7 @@ const Uploads = ({
       >
         {imageUrl.length != 0 ? null : uploadButton}
       </Upload>
-      <Modal open={previewOpen} title={'预览'} footer={null} onCancel={handleCancel}>
+      <Modal open={previewOpen} title={t('global.proview')} footer={null} onCancel={handleCancel}>
         <img alt="example" style={{ width: '100%' }} src={previewImage} />
       </Modal>
     </>

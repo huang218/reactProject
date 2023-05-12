@@ -7,6 +7,35 @@ const Test = () => {
   let refProps = useRef<any>('')
   let refPropsT = useRef<any>('')
   const { RangePicker } = DatePicker;
+
+  const callback = async (name, age?) => {
+    try {
+      const result: any = await back(name, age);
+      console.log(result.name,'result')
+    } catch (error) {
+      console.log(error,'error')
+    }
+    // back(name, age).then(res => {
+    //   console.log(res,'success')
+    // }).catch(err => {
+    //   console.error(err,'error')
+    // })
+  }
+
+  const back = (name?, age?) => {
+    let data = {
+      name: name + '2023',
+      age: age && age++
+    }
+    return new Promise((resolve, reject) => {
+      if(data?.name && data?.age) {
+        resolve(data)
+      }else {
+        reject(data)
+      }
+    })
+  }
+
   useEffect(() => {
     
   },[])
@@ -23,6 +52,8 @@ const Test = () => {
           border: '1px solid red'
         }}
       ></div>
+      <Button onClick={() => callback('name','12')} type="primary">Promise-success</Button><br />
+      <Button onClick={() => callback('name')} danger>Promise-error</Button><br />
       <Select showSearch style={{ width: 200 }}>
         <Select.Option value="jack">jack</Select.Option>
         <Select.Option value="lucy">lucy</Select.Option>

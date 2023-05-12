@@ -15,7 +15,7 @@ export default () => {
 
     const getData = async () => {
         setTimeout(() => {
-            const data = new Array(10).fill('标题-').map((s,i) => (
+            const data = new Array(30).fill('标题-').map((s,i) => (
                 {id: 'id-' + i, title: s + i}
             ))
             setList(data)

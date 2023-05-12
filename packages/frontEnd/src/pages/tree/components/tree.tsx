@@ -315,14 +315,14 @@ const App: React.FC<Props> = ({
               </div>
               <div className={node.key === selKey ? gridFunc(0) : gridFunc(80)}>
                 {node.isAdd ? (
-                  <span style={{marginLeft: '10px'}} title='确认新增' className={`iconfont icon-gou ${styles.hovers}`} onClick={(e) => confirmAdd(node, e)} />
+                  <span title='确认新增' style={{marginLeft: '10px'}} className={`iconfont icon-gou ${styles.hovers}`} onClick={(e) => confirmAdd(node, e)} />
                 ) : !node.isShow ? (
                   <span title='新增' className={`iconfont icon-tianjia ${styles.hovers}`} onClick={(e) => addTree(node, e)} />
                 ): (<></>)}
                 {node.isShow ? (
-                  <span style={{marginLeft: '10px'}} title='确认编辑' className={`iconfont icon-gou ${styles.hovers}`} onClick={(e) => confirmEdit(node, e)} />
+                  <span title='确认编辑' style={{marginLeft: '10px'}} className={`iconfont icon-gou ${styles.hovers}`} onClick={(e) => confirmEdit(node, e)} />
                 ) : !node.isAdd ?(
-                  <span style={{marginLeft: '10px'}} title='编辑' className={`iconfont icon-bianji ${styles.hovers}`} onClick={(e) => editTree(node, e)} />
+                  <span title='编辑' style={{marginLeft: '10px'}} className={`iconfont icon-bianji ${styles.hovers}`} onClick={(e) => editTree(node, e)} />
                 ): (<></>)}
 
                 <span style={{marginLeft: '10px'}} title='删除' className={`iconfont icon-shanchu ${styles.hovers}`} onClick={(e) => deleteNode(node, e)} />

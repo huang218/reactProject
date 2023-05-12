@@ -57,10 +57,10 @@ export const SortListDndKit = ({
   const gridFunc = () => {
     return(
         css`
-            display: grid;
-            grid-gap: 20px;
-            grid-template-columns: repeat(${4}, ${100}px);
-            grid-template-rows: repeat(${3}, ${100}px);
+          display: grid;
+          grid-gap: 20px;
+          grid-template-columns: repeat(${10}, ${100}px);
+          grid-template-rows: repeat(${3}, ${100}px);
         `
     )
   }
@@ -68,13 +68,13 @@ export const SortListDndKit = ({
   const classFun = () => {
     return(
         css`
-            display: flex;
-            justify-content: space-evenly;
-            background: aliceblue;
-            flex-direction: column;
-            height: 100%;
-            overflow-y: auto;
-            max-height: 500px;
+          display: flex;
+          justify-content: space-evenly;
+          background: aliceblue;
+          flex-direction: column;
+          height: 100%;
+          overflow-y: auto;
+          max-height: 500px;
         `
     )
   }

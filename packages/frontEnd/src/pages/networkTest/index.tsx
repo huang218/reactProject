@@ -3,9 +3,11 @@ import "react";
 import { useEffect, useState } from "react";
 import styles from "./index.module.scss";
 import { ipReg, domainUrl } from "@/common/utils";
+import { useTranslation } from "react-i18next";
 import { getPings } from './service';
 
 export default (props) => {
+  const { t } = useTranslation()
   const [form] = Form.useForm();
   const [resultDate, setResultDate] = useState('');
   const [loading, setLoading] = useState<Boolean>(false);
@@ -55,27 +57,27 @@ export default (props) => {
           autoComplete="off"
         >
           <Form.Item
-            label="测试对象"
+            label={t('network.test_obj')}
             name="obj"
             rules={
               [{ required: true, message: `请选择测试对象` }]
             }
           >
             <Radio.Group buttonStyle="solid" onChange={radioCanhge}>
-              <Radio.Button value="domain">域名</Radio.Button>
-              <Radio.Button value="ip">Ip</Radio.Button>
+              <Radio.Button value="domain">{t('network.realm_name')}</Radio.Button>
+              <Radio.Button value="ip">{t('network.ip')}</Radio.Button>
             </Radio.Group>
           </Form.Item>
           
           <Form.Item
-            label={`${radioContent === 'domain' ? '域名' : 'Ip'}`}
+            label={`${radioContent === 'domain' ? t('network.realm_name') : t('network.ip')}`}
             name="ipName"
             rules={
               [
-                { required: true, message: `请输入${radioContent === 'domain' ? '域名' : 'Ip地址'} ！` },
+                { required: true, message: `${radioContent === 'domain' ? t('network.enter_field_name') : t('network.enter_ip')}` },
                 {
                   pattern: radioContent === 'domain' ? domainUrl : radioContent === 'ip' ? ipReg : null,
-                  message: `${radioContent === 'domain' ? '域名' : 'Ip地址'}不正确`
+                  message: `${radioContent === 'domain' ? t('network.realm_name') : t('network.ip')} ${t('common.incorrect')}`
                 }
               ]
             }
@@ -83,7 +85,7 @@ export default (props) => {
             <Input />
           </Form.Item>
           <Form.Item shouldUpdate>
-            <Button type="primary" htmlType="submit">测试</Button>
+            <Button type="primary" htmlType="submit">{t('network.test')}</Button>
           </Form.Item>
         </Form>
       </div>
