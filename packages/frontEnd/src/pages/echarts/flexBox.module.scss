@@ -1,0 +1,21 @@
+.flexs {
+  display: flex;
+  width: 480px;
+  height: 200px;
+  gap: 20px;
+
+  & > div {
+    flex: 1;
+    border-radius: 10px;
+    background-color: antiquewhite;
+    background-image: url("@/assets/imgs/tx4.jpg");
+    background-size: auto 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: all .3s;
+    cursor: pointer;
+  }
+  & > div:hover {
+    flex: 4;
+  }
+}
